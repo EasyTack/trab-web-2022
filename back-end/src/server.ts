@@ -1,14 +1,13 @@
 import app from "./app";
-import pool from './dbconfig/dbconnector';
-
+import pool from "./dbconfig/dbconnector";
 
 /**
  * Start Express server.
  */
 const server = app.listen(app.get("port"), () => {
-  pool.connect(function (err, client, done) {
+  pool.connect(function (err) {
     if (err) throw new Error(err.message);
-    console.log('Connected');
+    console.log("Connected");
   });
 
   console.log(
