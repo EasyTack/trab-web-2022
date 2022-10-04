@@ -1,1 +1,1 @@
-# Desenvolvimeno Web e Web Semantica 2022/2
+# Desenvolvimeno Web e Web Semântica 2022/2
