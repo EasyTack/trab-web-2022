@@ -1,10 +1,10 @@
-button {
+a {
     margin: 0 2px;
     min-width: 120px;
     border-radius: 5px;
 }
 
-button:hover {
+a:hover {
     background-color: #36438d;
 }
 

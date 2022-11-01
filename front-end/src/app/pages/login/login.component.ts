@@ -9,6 +9,8 @@ import { Login } from 'src/app/interfaces/Login';
 })
 export class LoginComponent implements OnInit {
 
+  hide_senha = true;
+
   login: Login = {usuario:'', senha:''}
   formLogin: FormGroup
 
