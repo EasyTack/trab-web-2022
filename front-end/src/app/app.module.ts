@@ -8,13 +8,15 @@ import { MaterialModule } from 'src/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { HomeComponent } from './pages/home/home.component'
-import { LoginComponent } from './pages/login/login.component'
+import { LoginComponent } from './pages/login/login.component';
+import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule,

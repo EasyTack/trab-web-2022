@@ -3,14 +3,17 @@ h1 {
     margin-bottom: 20px;
 }
 
+.container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-page {
     /*background-color: rgba(240, 244, 247, 0.671);*/
     width: 500px;
-    padding: 10px 30px;
-    margin: 5% auto auto auto;
-    border-radius: 5px;
-    /*border: solid 1px #737475;*/
-    box-shadow: 0px 0px 18px 1px #737475;;
+    padding: 20px 30px;
 }
 
 form {
@@ -21,8 +24,7 @@ form {
 
 a {
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     text-decoration: none;
     color: #737475;
 }

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="cadastro-page box-shadow">
+        <form [formGroup]="formCadastro" (ngSubmit)="submitForm()">
+            <mat-form-field appearance="outline">
+                <mat-label>usuario</mat-label>
+                <input matInput formControlName="usuario" type="text" placeholder="user@email.com">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>senha</mat-label>
+                <input matInput formControlName="senha" type="text" placeholder="******">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" type="text" placeholder="Carlos">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput formControlName="sobrenome" type="text" placeholder="Assis">
+            </mat-form-field>
+        </form>
+    </div>
+</div>

@@ -1,3 +1,8 @@
 
-html, body { height: 100%; }
+html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.box-shadow {
+    border-radius: 5px;
+    box-shadow: 0px 0px 18px 1px #737475;
+}
