@@ -1,5 +1,9 @@
-div{
+.all-page {
     height: 100%;
+}
+
+.content-page {
+    height: calc(100% - 64px);
 }
 
 a {

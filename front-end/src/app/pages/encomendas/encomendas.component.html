@@ -1,0 +1,25 @@
+<div class="package-content">
+    <div class="package card-white">
+        <h1 class="title">Encomendas</h1>
+
+        <mat-tab-group>
+            <mat-tab label="Todos">
+                <div>
+                    <app-tabela-encomendas [pacotes]="todos" [displayed]="displayedTodos"></app-tabela-encomendas>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Pendentes">
+                <div>
+                    <app-tabela-encomendas [pacotes]="pendentes" [displayed]="displayedPendentes"></app-tabela-encomendas>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Entregues">
+                <div>
+                    <app-tabela-encomendas [pacotes]="entregues" [displayed]="displayedEdentregues"></app-tabela-encomendas>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

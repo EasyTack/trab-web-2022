@@ -1,24 +1,34 @@
-<div class="container">
-    <div class="login-page box-shadow">
-        <h1>Login</h1>
+<div class="content-alight-center">
+    <form [formGroup]="formLogin" (ngSubmit)="submitForm()" *ngIf="!recover_password" class="form-center  card-white">
+        <h1 class="title">Login</h1>
 
-        <form [formGroup]="formLogin" (ngSubmit)="submitForm()">
-            <mat-form-field appearance="outline">
-                <mat-label>usuario</mat-label>
-                <input matInput formControlName="usuario" type="text" placeholder="user@email.com">
-            </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="usuario" type="text" placeholder="user@email.com">
+        </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>senha</mat-label>
-                <input matInput formControlName="senha" [type]="hide_senha ? 'password' : 'text'" placeholder="******">
-                <button mat-icon-button matSuffix (click)="hide_senha = !hide_senha">
-                    <mat-icon>{{hide_senha ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" [type]="hide_senha ? 'password' : 'text'" placeholder="******">
+            <button mat-icon-button matSuffix (click)="hide_senha = !hide_senha">
+                <mat-icon>{{hide_senha ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
 
-            <button type="submit" mat-raised-button color="primary">Login</button>
-            <a href="cadusr">novo usuário</a>
-            <a href="#">recuperar senha</a>
-        </form>
-    </div>
+        <button type="submit" mat-raised-button color="primary" class="highlight-button">Login</button>
+        <a href="cadusr">novo usuário</a>
+        <a (click)="recoverPassword()">recuperar senha</a>
+    </form>
+
+
+    <form [formGroup]="formLogin" (ngSubmit)="submitFormRecoverPassword()" *ngIf="recover_password" class="form-center card-white">
+        <h1 class="title">Recuperar senha</h1>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="usuario" type="text" placeholder="user@email.com">
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" class="highlight-button">Enviar</button>
+    </form>
 </div>

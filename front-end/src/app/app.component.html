@@ -1,10 +1,12 @@
-<div>
+<div class="all-page">
     <mat-toolbar color="primary">
         <a mat-icon-button href=""><mat-icon>home</mat-icon> Home</a>
         <a mat-icon-button href="login">Login</a>
-        <a mat-icon-button>Página 3</a>
+        <a mat-icon-button href="encomendas">Encomendas</a>
         <a mat-icon-button>Página 4</a>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <div class="content-page">
+        <router-outlet></router-outlet>
+    </div>
 </div>

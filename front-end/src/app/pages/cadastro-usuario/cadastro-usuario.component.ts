@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CadastroUsuarioComponent implements OnInit {
 
+  hide_senha = true;
+  hide_confirmarSenha = true;
+
   formCadastro: FormGroup
 
   constructor(private fb: FormBuilder) {
@@ -23,6 +26,8 @@ export class CadastroUsuarioComponent implements OnInit {
       ])],
       senha: ['', Validators.compose([
       ])],
+      confirmarSenha: ['', Validators.compose([
+      ])],
       nome: ['', Validators.compose([
       ])],
       sobrenome: ['', Validators.compose([
@@ -31,6 +36,16 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   submitForm(){
-    
+    const dados = {
+      usuario: this.formCadastro.controls['usuario'].value,
+      senha: this.formCadastro.controls['senha'].value,
+      confirmarSenha: this.formCadastro.controls['confirmarSenha'].value,
+      nome: this.formCadastro.controls['nome'].value,
+      sobrenome: this.formCadastro.controls['sobrenome'].value
+    }
+
+    console.log(dados)
+
+    //this.formCadastro.reset()
   }
 }

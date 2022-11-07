@@ -1,28 +1,10 @@
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.container {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-page {
-    /*background-color: rgba(240, 244, 247, 0.671);*/
-    width: 500px;
-    padding: 20px 30px;
-}
-
 form {
-    display: grid;
-    margin: auto;
-    /*width: 400px;*/
+    width: 500px;
+    padding: 20px 30px 30px 30px;
 }
 
 a {
+    cursor: pointer;
     text-align: center;
     margin-top: 10px;
     text-decoration: none;

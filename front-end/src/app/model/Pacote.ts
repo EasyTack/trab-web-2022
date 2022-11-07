@@ -9,4 +9,10 @@ export class Pacote extends Entidade {
     localDestino?: String;
     status?: String
     registroMovimentacoes?: RegistroMovimentacao[]
+
+    constructor(codigoOperadorLogistica: String = ''){
+        super()
+        
+        this.codigoOperadorLogistica = codigoOperadorLogistica
+    }
 }

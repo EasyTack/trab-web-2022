@@ -8,7 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  hide_senha = true;
+  hide_senha = true
+  recover_password = false
+
 
   formLogin: FormGroup
 
@@ -22,12 +24,8 @@ export class LoginComponent implements OnInit {
   createForm(fb: FormBuilder){
     return fb.group({
       usuario: ['', Validators.compose([
-        Validators.required,
-        Validators.max(30)
       ])],
       senha: ['', Validators.compose([
-        Validators.required,
-        Validators.max(30)
       ])]
     })
   }
@@ -39,5 +37,22 @@ export class LoginComponent implements OnInit {
     }
 
     console.log(dados)
+
+    //this.formLogin.reset()
+  }
+
+  submitFormRecoverPassword(){
+    const dados = {
+      usuario: this.formLogin.controls['usuario'].value,
+      senha: this.formLogin.controls['senha'].value
+    }
+
+    console.log(dados)
+
+    //this.formLogin.reset()
+  }
+
+  recoverPassword(){
+    this.recover_password = true
   }
 }

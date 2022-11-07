@@ -9,14 +9,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
-import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component'
+import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
+import { EncomendasComponent } from './pages/encomendas/encomendas.component';
+import { TabelaEncomendasComponent } from './components/tabela-encomendas/tabela-encomendas.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    EncomendasComponent,
+    TabelaEncomendasComponent
   ],
   imports: [
     BrowserModule,
