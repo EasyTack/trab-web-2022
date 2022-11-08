@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatDialog } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,11 @@ export class LoginComponent implements OnInit {
 
   hide_senha = true
   recover_password = false
-
+  waitingData = false
 
   formLogin: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.formLogin = this.createForm(this.fb)
   }
 
@@ -24,8 +25,10 @@ export class LoginComponent implements OnInit {
   createForm(fb: FormBuilder){
     return fb.group({
       usuario: ['', Validators.compose([
+        Validators.required
       ])],
       senha: ['', Validators.compose([
+        Validators.required
       ])]
     })
   }
@@ -37,6 +40,15 @@ export class LoginComponent implements OnInit {
     }
 
     console.log(dados)
+
+    if(dados.usuario != '' && dados.senha != ''){
+      this.waitingData = true
+      setTimeout(()=>{
+        this.waitingData = false
+        this.formLogin.controls['usuario'].setErrors({userIncorrect: true})
+        this.formLogin.controls['senha'].setErrors({passwordIncorrect: true})
+      },5000)
+    }
 
     //this.formLogin.reset()
   }

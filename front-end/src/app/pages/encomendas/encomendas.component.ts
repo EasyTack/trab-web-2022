@@ -25,4 +25,12 @@ export class EncomendasComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /*erroLogin(){
+    const dialogRef = this.dialog.open(ErroLoginComponent);
+
+    //dialogRef.afterClosed().subscribe(result => {
+      //console.log(`Dialog result: ${result}`);
+    //});
+  }*/
 }

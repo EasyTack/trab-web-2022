@@ -8,6 +8,10 @@ export class UsuarioService {
 
   constructor() { }
 
+  login(): boolean{
+    return false
+  }
+
   criar(usuario: Usuario){ }
 
   atualizar(usuario: Usuario){ }

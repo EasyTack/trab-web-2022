@@ -15,3 +15,12 @@ a:hover {
     color: #3f51b5;
     font-weight: 600;
 }
+
+.input-content {
+    margin-bottom: 10px;
+}
+
+mat-progress-bar {
+    margin-bottom: 10px;
+    border-radius: 10px;
+}

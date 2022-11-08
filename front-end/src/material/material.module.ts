@@ -13,6 +13,10 @@ import { MatInputModule } from '@angular/material/input'
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatTableModule } from '@angular/material/table'
 
+import { MatDialogModule } from '@angular/material/dialog'
+
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+
 const MaterialComponents = [
   MatToolbarModule,
   MatMenuModule,
@@ -22,7 +26,9 @@ const MaterialComponents = [
   MatInputModule,
   MatCardModule,
   MatTabsModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule,
+  MatProgressBarModule
 ]
 
 @NgModule({
