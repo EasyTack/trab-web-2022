@@ -22,7 +22,7 @@
             <mat-error *ngIf="formLogin.controls['senha'].hasError('passwordIncorrect')">Usuario ou senha incorreto(s)</mat-error>
         </mat-form-field>
 
-        <button type="submit" (click)="submitForm()" mat-raised-button color="primary" class="highlight-button">Login</button>
+        <button type="submit" (click)="submitForm()" mat-raised-button color="primary" class="highlight-button-blue">Login</button>
         <a href="cadusr">novo usuário</a>
         <a (click)="recoverPassword()">recuperar senha</a>
     </form>
@@ -36,6 +36,6 @@
             <input matInput formControlName="usuario" type="text" placeholder="user@email.com">
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary" class="highlight-button">Enviar</button>
+        <button type="submit" mat-raised-button color="primary" class="highlight-button-blue">Enviar</button>
     </form>
 </div>

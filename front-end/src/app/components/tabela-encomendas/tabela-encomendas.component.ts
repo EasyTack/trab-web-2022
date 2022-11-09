@@ -16,4 +16,12 @@ export class TabelaEncomendasComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  edit(id: String){
+    console.log("Editar:" + id)
+  }
+
+  delete(id: String){
+    console.log("Deletar:" + id)
+  }
 }

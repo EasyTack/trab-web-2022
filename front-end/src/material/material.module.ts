@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button'
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
 
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatTableModule } from '@angular/material/table'
@@ -28,7 +29,8 @@ const MaterialComponents = [
   MatTabsModule,
   MatTableModule,
   MatDialogModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSelectModule
 ]
 
 @NgModule({

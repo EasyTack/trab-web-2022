@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Adicionar nova encomenda</h1>
+<div mat-dialog-content>
+    
+    <form class="form-center">
+        <mat-form-field appearance="outline">
+            <mat-label>Trasportadora</mat-label>
+            <mat-select>
+              <mat-option>Nenhuma</mat-option>
+              <mat-option value="option1">Correios</mat-option>
+              <mat-option value="option2">TNT</mat-option>
+              <mat-option value="option3">Jadlog</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Código da encomenda</mat-label>
+            <input matInput type="text" placeholder="AA123456785BR">
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button (click)="close()" class="btn-delete highlight-button-white">Cancelar</button>
+    <button mat-raised-button (click)="close()" class="btn-add highlight-button-white">Adicionar</button>
+</div>

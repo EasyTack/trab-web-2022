@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
 import { EncomendasComponent } from './pages/encomendas/encomendas.component';
 import { TabelaEncomendasComponent } from './components/tabela-encomendas/tabela-encomendas.component';
+import { CadastrarEncomendaComponent } from './components/cadastrar-encomenda/cadastrar-encomenda.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TabelaEncomendasComponent } from './components/tabela-encomendas/tabela
     LoginComponent,
     CadastroUsuarioComponent,
     EncomendasComponent,
-    TabelaEncomendasComponent
+    TabelaEncomendasComponent,
+    CadastrarEncomendaComponent
   ],
   imports: [
     BrowserModule,
