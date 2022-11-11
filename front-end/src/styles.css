@@ -2,6 +2,11 @@
 html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+:root {
+    --color-background: linear-gradient(to right top, #fdfdfd, #dbd5f9, #b7aff4, #9189ee, #6565e7);
+    --color-page: white;
+}
+
 .title {
     text-align: center;
 }
@@ -20,6 +25,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0px 0px 18px 1px #737475;
 }
 
+.page-bottom-shadow-white {
+    border-radius: 3px 3px 10px 10px;
+    box-shadow: 0px 0px 18px 1px #737475;
+}
+
 /* Elementos dispostos um abaixo do outro dentro do form */
 .form-center {
     display: grid;
@@ -35,4 +45,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .highlight-button-white:hover {
     box-shadow: 0px 0px 8px 0px #7f8181;
     transition: 100ms;
+}
+
+/* Botões dialod */
+.btn-dialog-position-ok, .btn-dialog-position-cancel {
+    margin-bottom: 5px !important;
+    min-width: 100px !important;
+}
+
+.btn-dialog-position-ok {
+    float: right;
+}
+
+.btn-dialog-position-cancel {
+    float: left;
 }

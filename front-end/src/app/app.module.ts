@@ -13,6 +13,9 @@ import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usua
 import { EncomendasComponent } from './pages/encomendas/encomendas.component';
 import { TabelaEncomendasComponent } from './components/tabela-encomendas/tabela-encomendas.component';
 import { CadastrarEncomendaComponent } from './components/cadastrar-encomenda/cadastrar-encomenda.component';
+import { ConfiguracaoComponent } from './components/configuracao/configuracao.component';
+import { TransportadorasComponent } from './pages/transportadoras/transportadoras.component';
+import { FiltrosComponent } from './components/filtros/filtros.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,11 @@ import { CadastrarEncomendaComponent } from './components/cadastrar-encomenda/ca
     CadastroUsuarioComponent,
     EncomendasComponent,
     TabelaEncomendasComponent,
-    CadastrarEncomendaComponent
-  ],
+    CadastrarEncomendaComponent,
+    ConfiguracaoComponent,
+    TransportadorasComponent,
+    FiltrosComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

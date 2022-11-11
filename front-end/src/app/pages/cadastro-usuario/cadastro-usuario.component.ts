@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/model/Usuario';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -23,28 +25,38 @@ export class CadastroUsuarioComponent implements OnInit {
   createForm(fb: FormBuilder){
     return fb.group({
       usuario: ['', Validators.compose([
+        Validators.required
       ])],
       senha: ['', Validators.compose([
+        Validators.required
       ])],
       confirmarSenha: ['', Validators.compose([
+        Validators.required
       ])],
       nome: ['', Validators.compose([
+        Validators.required
       ])],
       sobrenome: ['', Validators.compose([
+        Validators.required
+      ])],
+      cpf: ['', Validators.compose([
+        Validators.required
       ])]
     })
   }
 
   submitForm(){
-    const dados = {
-      usuario: this.formCadastro.controls['usuario'].value,
-      senha: this.formCadastro.controls['senha'].value,
-      confirmarSenha: this.formCadastro.controls['confirmarSenha'].value,
-      nome: this.formCadastro.controls['nome'].value,
-      sobrenome: this.formCadastro.controls['sobrenome'].value
-    }
+    let usuario = new Usuario
+    usuario.nome = this.formCadastro.controls['nome'].value
+    usuario.sobrenome = this.formCadastro.controls['sobrenome'].value
+    usuario.cpf = this.formCadastro.controls['cpf'].value
+    usuario.usuario = this.formCadastro.controls['usuario'].value
+    usuario.senha = this.formCadastro.controls['senha'].value
+    let confirmarSenha = this.formCadastro.controls['confirmarSenha'].value
 
-    console.log(dados)
+    if(usuario.usuario && usuario.nome && usuario.sobrenome && usuario.senha && usuario.senha && confirmarSenha && usuario.cpf){
+      new UsuarioService().cadastrar(usuario)
+    }
 
     //this.formCadastro.reset()
   }

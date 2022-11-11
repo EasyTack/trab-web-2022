@@ -4,6 +4,6 @@ import { Pacote } from "./Pacote"
 export abstract class Pessoa extends Entidade {
     nome: String = ''
     sobrenome: String = ''
-    documento: String = ''
+    cpf: String = ''
     pacotes?: Pacote[]
 }

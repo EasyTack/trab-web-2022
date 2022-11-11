@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Filtros</h1>
+
+<div mat-dialog-content class="content-page">
+    <form [formGroup]="formFilter" class="form-center">
+        <mat-checkbox formControlName="ftCodigo" (change)="limpaBuscaCodigo()" color="primary">Código</mat-checkbox>
+        <mat-form-field appearance="outline">
+            <mat-label>Código da encomenda</mat-label>
+            <input matInput formControlName="buscaCodigo" type="text" placeholder="AA123456785BR">
+        </mat-form-field>
+
+        <mat-checkbox formControlName="ftOrigem" (change)="limpaBuscaOrigem()" color="primary">Origem</mat-checkbox>
+        <mat-form-field appearance="outline">
+            <mat-label>Local de origem</mat-label>
+            <input matInput formControlName="buscaOrigem" type="text" placeholder="AA123456785BR">
+        </mat-form-field>
+
+        <mat-checkbox formControlName="ftDestino" (change)="limpaBuscaDestino()" color="primary">Destino</mat-checkbox>
+        <mat-form-field appearance="outline">
+            <mat-label>Local de destino</mat-label>
+            <input matInput matInput formControlName="buscaDestino" type="text" placeholder="AA123456785BR">
+        </mat-form-field>
+
+        <mat-checkbox formControlName="ftEtiqueta" color="primary">Etiqueta</mat-checkbox>
+        <mat-form-field appearance="outline">
+            <mat-label>Etiquetas</mat-label>
+            <mat-select>
+              <mat-option>Nenhuma</mat-option>
+              <mat-option value="option1">Presente</mat-option>
+              <mat-option value="option2">Trabalho</mat-option>
+              <mat-option value="option3">Filho</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="ftPeriodo" color="primary">Período</mat-checkbox>
+        <mat-form-field appearance="outline">
+            <mat-label>Intervalo de busca</mat-label>
+            <mat-date-range-input
+              [formGroup]="campaignOne"
+              [rangePicker]="campaignOnePicker"
+              [comparisonStart]="campaignTwo.value.start"
+              [comparisonEnd]="campaignTwo.value.end">
+              <input matStartDate placeholder="Start date" formControlName="start">
+              <input matEndDate placeholder="End date" formControlName="end">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+          </mat-form-field>
+    </form>
+
+    <div class="content-alight-center">
+        <button mat-raised-button class="btn-filter highlight-button-white">
+            <mat-icon>search</mat-icon>
+            Buscar
+        </button>
+    </div>
+</div>

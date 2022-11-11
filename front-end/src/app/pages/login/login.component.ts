@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Usuario } from 'src/app/model/Usuario'
+import { UsuarioService } from 'src/app/service/usuario.service'
 
 @Component({
   selector: 'app-login',
@@ -33,14 +35,13 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(){
-    const dados = {
-      usuario: this.formLogin.controls['usuario'].value,
-      senha: this.formLogin.controls['senha'].value
-    }
+    let usuario = new Usuario()
+    usuario.usuario = this.formLogin.controls['usuario'].value
+    usuario.senha = this.formLogin.controls['senha'].value
 
-    console.log(dados)
+    const result = new UsuarioService().login(usuario)
 
-    if(dados.usuario != '' && dados.senha != ''){
+    if(usuario.usuario != '' && usuario.senha != ''){
       this.waitingData = true
       setTimeout(()=>{
         this.waitingData = false
@@ -53,12 +54,10 @@ export class LoginComponent implements OnInit {
   }
 
   submitFormRecoverPassword(){
-    const dados = {
-      usuario: this.formLogin.controls['usuario'].value,
-      senha: this.formLogin.controls['senha'].value
-    }
+    let usuario = new Usuario()
+    usuario.usuario = this.formLogin.controls['usuario'].value
 
-    console.log(dados)
+    new UsuarioService().recuperarSenha(usuario)
 
     //this.formLogin.reset()
   }

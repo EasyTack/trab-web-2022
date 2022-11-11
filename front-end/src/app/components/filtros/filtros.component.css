@@ -1,0 +1,9 @@
+.content-page {
+    min-width: 400px;
+}
+
+.btn-filter {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    min-width: 100px;
+}

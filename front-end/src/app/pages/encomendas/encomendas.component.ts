@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
+import { FiltrosComponent } from 'src/app/components/filtros/filtros.component';
 import { Pacote } from 'src/app/model/Pacote';
 import { PacoteService } from 'src/app/service/pacote.service';
 
@@ -11,35 +12,32 @@ import { PacoteService } from 'src/app/service/pacote.service';
 })
 export class EncomendasComponent implements OnInit {
 
-  todos: Pacote[]
-  entregues: Pacote[]
-  pendentes: Pacote[]
+  pacotes: Pacote[]
 
-  displayedTodos: String[] = ["codigoOperadorLogistica", "actions"]
-  displayedEdentregues: String[] = ["codigoOperadorLogistica", "actions"]
-  displayedPendentes: String[] = ["codigoOperadorLogistica", "actions"]
+  displayedTodos: String[] = ["select", "codigoOperadorLogistica", "status", "dataPostagem", "dataEntrega", "origem", "destino"]
 
   constructor(private dialog: MatDialog) {
-    this.todos = new PacoteService().getAllPackages()
-    this.entregues = new PacoteService().getDeliveredPackages()
-    this.pendentes = new PacoteService().getPendingPackages()
+    this.pacotes = new PacoteService().getAllPackages()
   }
 
   ngOnInit(): void {
-    //this.adicionar()
+    //this.dialogAdicionar()
+    //this.dialogFiltrar()
   }
 
-  adicionar(){
-    const dialogRef = this.dialog.open(CadastrarEncomendaComponent, {
-      data: {close: this.fecharDialig}
-    });
+  dialogAdicionar(){
+    const dialogRef = this.dialog.open(CadastrarEncomendaComponent);
     
     /*dialogRef.afterClosed().subscribe(result => {
       //console.log(`Dialog result: ${result}`);
     });*/
   }
 
-  fecharDialig(){
-    this.dialog.closeAll()
+  dialogFiltrar(){
+    const dialogRef = this.dialog.open(FiltrosComponent);
+    
+    /*dialogRef.afterClosed().subscribe(result => {
+      //console.log(`Dialog result: ${result}`);
+    });*/
   }
 }

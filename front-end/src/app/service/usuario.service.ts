@@ -8,11 +8,23 @@ export class UsuarioService {
 
   constructor() { }
 
-  login(): boolean{
-    return false
+  login(usuario: Usuario): Boolean{
+    console.log("login:")
+    console.log(usuario)
+    return true
   }
 
-  criar(usuario: Usuario){ }
+  recuperarSenha(usuario: Usuario){
+    console.log("recuperar senha:")
+    console.log(usuario)
+    return true
+  }
+
+  cadastrar(usuario: Usuario){
+    console.log("cadastrar novo usuário:")
+    console.log(usuario)
+    return true
+  }
 
   atualizar(usuario: Usuario){ }
 

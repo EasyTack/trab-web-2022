@@ -3,7 +3,17 @@
         <a mat-icon-button href=""><mat-icon>home</mat-icon> Home</a>
         <a mat-icon-button href="login">Login</a>
         <a mat-icon-button href="encomendas">Encomendas</a>
-        <a mat-icon-button>Página 4</a>
+        <a mat-icon-button href="transp">Transportadoras</a>
+        <div class="flex-spacer"></div>
+        <div class="actions">
+            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="changeRegistration()"><mat-icon>person</mat-icon><span>Alterar cadastro</span></button>
+                <button mat-menu-item (click)="logout()"><mat-icon>exit_to_app</mat-icon><span>Sair</span></button>
+            </mat-menu>
+
+            <button mat-icon-button (click)="openConfig()"><mat-icon>settings</mat-icon></button>
+        </div>
     </mat-toolbar>
 
     <div class="content-page">

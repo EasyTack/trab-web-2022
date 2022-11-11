@@ -1,11 +1,3 @@
-.btn-add, .btn-delete {
-    margin-bottom: 5px;
-}
-
-.btn-add {
-    float: right;
-}
-
-.btn-delete {
-    float: left;
+.content-page {
+    min-width: 350px;
 }
