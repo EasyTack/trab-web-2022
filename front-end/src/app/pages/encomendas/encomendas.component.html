@@ -1,51 +1,54 @@
-<div class="package-content">
-    <div class="package page-bottom-shadow-white">
-        <h1 class="title">Encomendas</h1>
+<div class="package">
+    <h1 class="title">Encomendas</h1>
 
-        <div class="options">
-            <div class="options-btn">
-                <button mat-raised-button [matMenuTriggerFor]="menuEncomenda" class="btn-menu highlight-button-white">
-                    <mat-icon class="btn-icon">add</mat-icon>
-                    Encomendas
+    <div class="options card-white">
+        <div class="options-btn">
+            <button mat-raised-button [matMenuTriggerFor]="menuEncomenda" class="btn-menu highlight-button-white">
+                <mat-icon class="btn-icon">add</mat-icon>
+                Encomendas
+            </button>
+            <mat-menu #menuEncomenda="matMenu">
+                <button mat-menu-item (click)="dialogAdicionar()">
+                    <mat-icon>add</mat-icon>
+                    Adicionar
                 </button>
-                <mat-menu #menuEncomenda="matMenu">
-                    <button mat-menu-item (click)="dialogAdicionar()">
-                        <mat-icon>add</mat-icon>
-                        Adicionar
-                    </button>
-                    <button mat-menu-item><mat-icon>delete_outline</mat-icon>Remover</button>
-                </mat-menu>
-
-
-                <button mat-raised-button [matMenuTriggerFor]="menuFiltro" class="btn-menu highlight-button-white">
-                    <mat-icon class="btn-icon">style</mat-icon>
-                    Etiquetas
+                <button mat-menu-item (click)="removerEncomenda()">
+                    <mat-icon>delete_outline</mat-icon>
+                    Remover
                 </button>
-                <mat-menu #menuFiltro="matMenu">
-                    <button mat-menu-item><mat-icon>add</mat-icon>Criar</button>
-                    <button mat-menu-item><mat-icon>create</mat-icon>Edita</button>
-                    <button mat-menu-item><mat-icon>delete_outline</mat-icon>Excluir</button>
-                </mat-menu>
+            </mat-menu>
 
-                <button mat-raised-button (click)="dialogFiltrar()" class="btn-menu highlight-button-white">
-                    <mat-icon class="btn-icon">find_in_page</mat-icon>
-                    Filtros
-                </button>
-            </div>
 
-            <div class="options-filter">
-                <mat-form-field class="filter-tipes">
-                    <mat-label>Filtros</mat-label>
-                    <mat-chip-list>
-                        <mat-chip>Etiqueta</mat-chip>
-                        <mat-chip>Data</mat-chip>
-                    </mat-chip-list>
-                </mat-form-field>
-            </div>
+            <button mat-raised-button [matMenuTriggerFor]="menuFiltro" class="btn-menu highlight-button-white">
+                <mat-icon class="btn-icon">style</mat-icon>
+                Etiquetas
+            </button>
+            <mat-menu #menuFiltro="matMenu">
+                <button mat-menu-item><mat-icon>add</mat-icon>Criar</button>
+                <button mat-menu-item><mat-icon>create</mat-icon>Edita</button>
+                <button mat-menu-item><mat-icon>delete_outline</mat-icon>Excluir</button>
+            </mat-menu>
+
+            <button mat-raised-button (click)="dialogFiltrar()" class="btn-menu highlight-button-white">
+                <mat-icon class="btn-icon">find_in_page</mat-icon>
+                Filtros
+            </button>
         </div>
 
-        <div>
-            <app-tabela-encomendas [pacotes]="pacotes" [displayed]="displayedTodos"></app-tabela-encomendas>
+        <div class="options-filter">
+            <mat-form-field class="filter-tipes">
+                <mat-label>Filtros</mat-label>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let f of filtros" (removed)="removerFiltro(f)">
+                        {{f}}
+                        <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                        </mat-chip>
+                </mat-chip-list>
+            </mat-form-field>
         </div>
+    </div>
+
+    <div class="content-table card-white">
+        <app-tabela-encomendas [pacotes]="pacotes" (eventListSelected)="atualizarObjetosSelecionados($event)"></app-tabela-encomendas>
     </div>
 </div>

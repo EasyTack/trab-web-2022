@@ -16,6 +16,8 @@ import { CadastrarEncomendaComponent } from './components/cadastrar-encomenda/ca
 import { ConfiguracaoComponent } from './components/configuracao/configuracao.component';
 import { TransportadorasComponent } from './pages/transportadoras/transportadoras.component';
 import { FiltrosComponent } from './components/filtros/filtros.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { FiltrosComponent } from './components/filtros/filtros.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-br'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

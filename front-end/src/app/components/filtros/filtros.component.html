@@ -20,38 +20,38 @@
             <input matInput matInput formControlName="buscaDestino" type="text" placeholder="AA123456785BR">
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftEtiqueta" color="primary">Etiqueta</mat-checkbox>
+        <mat-checkbox formControlName="ftEtiqueta" (change)="limparBuscaEtiqueta()" color="primary">Etiqueta</mat-checkbox>
         <mat-form-field appearance="outline">
             <mat-label>Etiquetas</mat-label>
-            <mat-select>
-              <mat-option>Nenhuma</mat-option>
-              <mat-option value="option1">Presente</mat-option>
-              <mat-option value="option2">Trabalho</mat-option>
-              <mat-option value="option3">Filho</mat-option>
+            <mat-select formControlName="buscaEtiqueta">
+                <mat-option [value]="''">Nenhuma</mat-option>
+                <mat-option *ngFor="let e of etiquetas" [value]="e.id">{{e.nome}}</mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftPeriodo" color="primary">Período</mat-checkbox>
+        <mat-checkbox formControlName="ftPeriodo" (change)="limparBuscaPeriodo()" color="primary">Período</mat-checkbox>
         <mat-form-field appearance="outline">
+
             <mat-label>Intervalo de busca</mat-label>
             <mat-date-range-input
-              [formGroup]="campaignOne"
-              [rangePicker]="campaignOnePicker"
-              [comparisonStart]="campaignTwo.value.start"
-              [comparisonEnd]="campaignTwo.value.end">
-              <input matStartDate placeholder="Start date" formControlName="start">
-              <input matEndDate placeholder="End date" formControlName="end">
+                [formGroup]="formFilter"
+                [rangePicker]="campaignOnePicker"
+                [comparisonStart]="auxDate.value.inicio"
+                [comparisonEnd]="auxDate.value.fim">
+
+                <input matStartDate placeholder="Data de inicio" formControlName="buscaPeriodoInicio">
+                <input matEndDate placeholder="Data de fim" formControlName="buscaPeriodoFim">
             </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-hint>dia/mês/ano – dia/mês/ano</mat-hint>
+
             <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+
           </mat-form-field>
     </form>
 
-    <div class="content-alight-center">
-        <button mat-raised-button class="btn-filter highlight-button-white">
-            <mat-icon>search</mat-icon>
-            Buscar
-        </button>
+    <div>
+        <button mat-raised-button [mat-dialog-close]="formFilter.value" class="btn-dialog-position-ok btn-filter highlight-button-white">Buscar</button>
+        <button mat-raised-button mat-dialog-close class="btn-dialog-position-cancel btn-filter highlight-button-white">Cancelar</button>
     </div>
 </div>

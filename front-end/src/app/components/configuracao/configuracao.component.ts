@@ -47,7 +47,7 @@ export class ConfiguracaoComponent implements OnInit {
     new ConfiguracaoService().salvar(configuracao)
   }
 
-  close(){
+  closeDialog(){
     this.dialog.close()
   }
 }
