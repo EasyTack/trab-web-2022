@@ -1,27 +1,24 @@
 <h1 mat-dialog-title>Filtros</h1>
 
 <div mat-dialog-content class="content-page">
-    <form [formGroup]="formFilter" class="form-center">
-        <mat-checkbox formControlName="ftCodigo" (change)="limpaBuscaCodigo()" color="primary">Código</mat-checkbox>
-        <mat-form-field appearance="outline">
+    <form [formGroup]="formFilter" class="form-center" [ngSwitch]="tipoFiltro">
+
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaCodigo()">
             <mat-label>Código da encomenda</mat-label>
             <input matInput formControlName="buscaCodigo" type="text" placeholder="AA123456785BR">
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftOrigem" (change)="limpaBuscaOrigem()" color="primary">Origem</mat-checkbox>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaOrigem()">
             <mat-label>Local de origem</mat-label>
             <input matInput formControlName="buscaOrigem" type="text" placeholder="AA123456785BR">
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftDestino" (change)="limpaBuscaDestino()" color="primary">Destino</mat-checkbox>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaDestino()">
             <mat-label>Local de destino</mat-label>
             <input matInput matInput formControlName="buscaDestino" type="text" placeholder="AA123456785BR">
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftEtiqueta" (change)="limparBuscaEtiqueta()" color="primary">Etiqueta</mat-checkbox>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaEtiqueta()">
             <mat-label>Etiquetas</mat-label>
             <mat-select formControlName="buscaEtiqueta">
                 <mat-option [value]="''">Nenhuma</mat-option>
@@ -29,10 +26,28 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-checkbox formControlName="ftPeriodo" (change)="limparBuscaPeriodo()" color="primary">Período</mat-checkbox>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaDataPostagem()">
 
-            <mat-label>Intervalo de busca</mat-label>
+            <mat-label>Intervalo de Postagem</mat-label>
+            <mat-date-range-input
+                [formGroup]="formFilter"
+                [rangePicker]="campaignOnePicker"
+                [comparisonStart]="auxDate.value.inicio"
+                [comparisonEnd]="auxDate.value.fim">
+
+                <input matStartDate placeholder="Data de inicio" formControlName="buscaPeriodoInicio">
+                <input matEndDate placeholder="Data de fim" formControlName="buscaPeriodoFim">
+            </mat-date-range-input>
+            <mat-hint>dia/mês/ano – dia/mês/ano</mat-hint>
+
+            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaDataEntrega()">
+
+            <mat-label>Intervalo de Entrega</mat-label>
             <mat-date-range-input
                 [formGroup]="formFilter"
                 [rangePicker]="campaignOnePicker"

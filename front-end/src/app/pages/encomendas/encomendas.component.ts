@@ -4,6 +4,7 @@ import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encome
 import { FiltrosComponent } from 'src/app/components/filtros/filtros.component';
 import { Pacote } from 'src/app/model/Pacote';
 import { PacoteService } from 'src/app/service/pacote.service';
+import { Filtro, TipoFiltro } from './Filtro';
 
 @Component({
   selector: 'app-encomendas',
@@ -13,8 +14,7 @@ import { PacoteService } from 'src/app/service/pacote.service';
 export class EncomendasComponent implements OnInit {
 
   @Input() objetosSelecionados: number[] = []
-  filtros: String[] = ['Todas as Encomendas']
-  dadosFiltro: any
+  filtro: Filtro[] = []
 
   pacotes: Pacote[]
 
@@ -24,42 +24,91 @@ export class EncomendasComponent implements OnInit {
 
   ngOnInit(): void {
     //this.dialogAdicionar()
-    this.dialogFiltrar()
+    //this.dialogFiltrar()
   }
 
   dialogAdicionar(){
     const dialogRef = this.dialog.open(CadastrarEncomendaComponent);
     
-    /*dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
-    });*/
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  dialogFiltrar(){
-    const dialogRef = this.dialog.open(FiltrosComponent, {data: this.dadosFiltro});
-    
+  dialogFiltrarCodigo(){
+    let ft = new Filtro(TipoFiltro.Codigo)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Codigo})
+
     dialogRef.afterClosed().subscribe(result => {
-      
       if(result){
-        this.dadosFiltro = result
-
-        const { ftCodigo, ftOrigem, ftDestino, ftEtiqueta, ftPeriodo, 
-          buscaCodigo, buscaOrigem, buscaDestino, buscaEtiqueta, buscaPeriodoInicio, buscaPeriodoFim } = result
-
-        this.filtros = []
-
-        if(ftCodigo || ftOrigem || ftDestino || ftEtiqueta || ftPeriodo){
-          if(ftCodigo){this.filtros.push(`Código: ${buscaCodigo}`)}
-          if(ftOrigem){this.filtros.push(`Origem: ${buscaOrigem}`)}
-          if(ftDestino){this.filtros.push(`Destino: ${buscaDestino}`)}
-          if(ftEtiqueta){this.filtros.push(`Etiqueta: ${buscaEtiqueta}`)}
-          if(ftPeriodo){this.filtros.push(`Período: ${this.formatDate(buscaPeriodoInicio)} - ${this.formatDate(buscaPeriodoFim)}`)}
-          
-        } else {
-          this.filtros.push('Todas as Encomendas')
-        }
+        ft.buscaCodigo = result.buscaCodigo
+        this.filtro.push(ft)
       }
-    });
+    })
+  }
+
+  dialogFiltrarOrigem(){
+    let ft = new Filtro(TipoFiltro.Origem)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Origem})    
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        ft.buscaOrigem = result.buscaOrigem
+        this.filtro.push(ft)
+      }
+    })
+  }
+
+  dialogFiltrarDestino(){
+    let ft = new Filtro(TipoFiltro.Destino)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Destino}) 
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        ft.buscaDestino = result.buscaDestino
+        this.filtro.push(ft)
+      }
+    })
+  }
+
+  dialogFiltrarEtiqueta(){
+    let ft = new Filtro(TipoFiltro.Etiqueta)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Etiqueta})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        ft.buscaEtiqueta = result.buscaEtiqueta
+        this.filtro.push(ft)
+      }
+    })
+  }
+
+  dialogFiltrarStatus(){}
+
+  dialogFiltrarPeriodoPostagem(){
+    let ft = new Filtro(TipoFiltro.DataPostagem)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataPostagem})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        ft.buscaDataPostagemInicio = result.buscaDataPostagemInicio
+        ft.buscaDataPostagemFim = result.buscaDataPostagemFim
+        this.filtro.push(ft)
+      }
+    })
+  }
+
+  dialogFiltrarPeriodoEntrega(){
+    let ft = new Filtro(TipoFiltro.DataEntrega)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataEntrega})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        ft.buscaDataEntregaInicio = result.buscaDataEntregaInicio
+        ft.buscaDataEntregaFim = result.buscaDataEntregaFim
+        this.filtro.push(ft)
+      }
+    })
   }
 
   atualizarObjetosSelecionados(objetosSelecionados: number[]){
@@ -69,21 +118,13 @@ export class EncomendasComponent implements OnInit {
   removerEncomenda(){
     let idList: String[] = []
     this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
-    console.log(idList)
+
+    if(idList.length > 0) console.log(idList)
+    else console.log("Não há dados para serem apagados")
   }
 
-  removerFiltro(filtro: String){
-    this.filtros.splice(this.filtros.indexOf(filtro), 1);
-    if(this.filtros.length == 0) this.filtros.push('Todas as Encomendas')
-    console.log(filtro)
-  }
-
-  formatDate(date: Date): String{
-    let dia  = date.getDate().toString(),
-      diaF = (dia.length == 1) ? '0'+dia : dia,
-      mes  = (date.getMonth()+1).toString(),
-      mesF = (mes.length == 1) ? '0'+mes : mes,
-      anoF = date.getFullYear();
-      return diaF+"/"+mesF+"/"+anoF;
+  removerFiltro(filtro: Filtro, index: number){
+    this.filtro.splice(index, 1);
+    console.log(`Removendo index: ${index} -- ${filtro.getString()}`)
   }
 }

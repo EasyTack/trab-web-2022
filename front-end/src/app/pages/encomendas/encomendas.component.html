@@ -19,28 +19,42 @@
             </mat-menu>
 
 
-            <button mat-raised-button [matMenuTriggerFor]="menuFiltro" class="btn-menu highlight-button-white">
+            <button mat-raised-button [matMenuTriggerFor]="menuEtiqueta" class="btn-menu highlight-button-white">
                 <mat-icon class="btn-icon">style</mat-icon>
                 Etiquetas
             </button>
-            <mat-menu #menuFiltro="matMenu">
+            <mat-menu #menuEtiqueta="matMenu">
                 <button mat-menu-item><mat-icon>add</mat-icon>Criar</button>
                 <button mat-menu-item><mat-icon>create</mat-icon>Edita</button>
                 <button mat-menu-item><mat-icon>delete_outline</mat-icon>Excluir</button>
             </mat-menu>
 
-            <button mat-raised-button (click)="dialogFiltrar()" class="btn-menu highlight-button-white">
+            <button mat-raised-button [matMenuTriggerFor]="menuFiltro" class="btn-menu highlight-button-white">
                 <mat-icon class="btn-icon">find_in_page</mat-icon>
                 Filtros
             </button>
+            <mat-menu #menuFiltro="matMenu">
+                <button mat-menu-item (click)="dialogFiltrarCodigo()"><mat-icon>calendar_view_day</mat-icon>Código</button>
+                <button mat-menu-item (click)="dialogFiltrarOrigem()"><mat-icon>flight_takeoff</mat-icon>Origem</button>
+                <button mat-menu-item (click)="dialogFiltrarDestino()"><mat-icon>flight_land</mat-icon>Destino</button>
+                <button mat-menu-item (click)="dialogFiltrarEtiqueta()"><mat-icon>local_offer</mat-icon>Etiqueta</button>
+                <button mat-menu-item (click)="dialogFiltrarStatus()"><mat-icon>local_shipping</mat-icon>Status</button>
+                <button mat-menu-item (click)="dialogFiltrarPeriodoPostagem()"><mat-icon>calendar_today</mat-icon>Postagem</button>
+                <button mat-menu-item (click)="dialogFiltrarPeriodoEntrega()"><mat-icon>calendar_today</mat-icon>Entrega</button>
+            </mat-menu>
         </div>
 
         <div class="options-filter">
             <mat-form-field class="filter-tipes">
                 <mat-label>Filtros</mat-label>
                 <mat-chip-list>
-                    <mat-chip *ngFor="let f of filtros" (removed)="removerFiltro(f)">
-                        {{f}}
+                    <mat-chip *ngIf="filtro.length == 0">
+                        Todas as Encomendas
+                        <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                    </mat-chip>
+
+                    <mat-chip *ngFor="let f of filtro; index as i" (removed)="removerFiltro(f, i)">
+                        {{f.getString()}}
                         <button matChipRemove><mat-icon>cancel</mat-icon></button>
                         </mat-chip>
                 </mat-chip-list>
