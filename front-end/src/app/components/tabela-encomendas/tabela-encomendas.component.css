@@ -10,3 +10,8 @@ table {
 .column-select {
     background-color: rgba(143, 133, 231, 0.185);
 }
+
+.etiquetas-content {
+    display: flex;
+    align-items: center;
+}

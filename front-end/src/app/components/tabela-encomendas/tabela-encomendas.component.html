@@ -36,8 +36,19 @@
     </ng-container>
 
     <ng-container matColumnDef="destino">
-        <th mat-header-cell *matHeaderCellDef>Local de Desripo</th>
+        <th mat-header-cell *matHeaderCellDef>Local de Destino</th>
         <td mat-cell *matCellDef="let element"> {{element.pacote.localDestino}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="etiqueta">
+        <th mat-header-cell *matHeaderCellDef>Etiquetas</th>
+        <td mat-cell *matCellDef="let element" (click)="dialogDescreveEtiquetas(element.pacote.etiquetas)">
+            <div *ngIf="element.pacote.etiquetas" class="etiquetas-content">
+                <div *ngFor="let e of element.pacote.etiquetas">
+                    <mat-icon [ngStyle]="{'color': e.cor}">local_offer</mat-icon>
+                </div>
+            </div>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayed"></tr>

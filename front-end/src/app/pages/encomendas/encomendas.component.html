@@ -8,7 +8,7 @@
                 Encomendas
             </button>
             <mat-menu #menuEncomenda="matMenu">
-                <button mat-menu-item (click)="dialogAdicionar()">
+                <button mat-menu-item (click)="dialogAdicionarEncomenda()">
                     <mat-icon>add</mat-icon>
                     Adicionar
                 </button>
@@ -24,9 +24,9 @@
                 Etiquetas
             </button>
             <mat-menu #menuEtiqueta="matMenu">
-                <button mat-menu-item><mat-icon>add</mat-icon>Criar</button>
-                <button mat-menu-item><mat-icon>create</mat-icon>Edita</button>
-                <button mat-menu-item><mat-icon>delete_outline</mat-icon>Excluir</button>
+                <button mat-menu-item (click)="dialogCriarEtiqueta()"><mat-icon>bookmark</mat-icon>Criar</button>
+                <button mat-menu-item (click)="dialogAdicionarEtiqueta()"><mat-icon>book</mat-icon>Adicionar</button>
+                <button mat-menu-item (click)="removerEtiqueta()"><mat-icon>delete_outline</mat-icon>Remover</button>
             </mat-menu>
 
             <button mat-raised-button [matMenuTriggerFor]="menuFiltro" class="btn-menu highlight-button-white">

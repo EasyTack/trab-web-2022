@@ -1,4 +1,5 @@
 import { Entidade } from "./Entidade";
+import { Etiqueta } from "./Etiqueta";
 import { OperadorLogistico } from "./OperadorLogistico";
 import { RegistroMovimentacao } from "./RegistroMovimentacao";
 
@@ -9,6 +10,7 @@ export class Pacote extends Entidade {
     localOrigem?: String
     localDestino?: String;
     status?: String
+    etiquetas: Etiqueta[] = []
     operadorLogistico?: OperadorLogistico
     registroMovimentacoes?: RegistroMovimentacao[]
 

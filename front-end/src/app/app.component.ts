@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   changeRegistration(){
-    console.log("Alterar Cadastro")
+    console.log("CONCLUIR: Alterar Cadastro")
   }
 
   logout(){

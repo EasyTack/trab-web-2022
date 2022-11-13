@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AdicionarEtiquetaComponent } from 'src/app/components/adicionar-etiqueta/adicionar-etiqueta.component';
 import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
+import { CriarEtiquetaComponent } from 'src/app/components/criar-etiqueta/criar-etiqueta.component';
 import { FiltrosComponent } from 'src/app/components/filtros/filtros.component';
 import { Pacote } from 'src/app/model/Pacote';
 import { PacoteService } from 'src/app/service/pacote.service';
@@ -25,14 +27,64 @@ export class EncomendasComponent implements OnInit {
   ngOnInit(): void {
     //this.dialogAdicionar()
     //this.dialogFiltrar()
+    //this.dialogCriarEtiqueta()
+    //this.dialogFiltrarEtiqueta()
   }
 
-  dialogAdicionar(){
+  atualizarObjetosSelecionados(objetosSelecionados: number[]){
+    this.objetosSelecionados = objetosSelecionados
+  }
+
+  removerFiltro(filtro: Filtro, index: number){
+    this.filtro.splice(index, 1);
+    console.log(`Removendo index: ${index} -- ${filtro.getString()}`)
+  }
+
+  dialogAdicionarEncomenda(){
     const dialogRef = this.dialog.open(CadastrarEncomendaComponent);
     
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  removerEncomenda(){
+    let idList: String[] = []
+    this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
+
+    if(idList.length > 0) console.log(idList)
+    else console.log("Não há dados para serem apagados")
+  }
+
+  dialogCriarEtiqueta(){
+    const dialogRef = this.dialog.open(CriarEtiquetaComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if(result.nome && result.cor && (this.objetosSelecionados.length > 0))
+          console.log(result)
+      }
+    })
+  }
+
+  dialogAdicionarEtiqueta(){
+    const dialogRef = this.dialog.open(AdicionarEtiquetaComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if(result.id)
+          console.log(result)
+      }
+    })
+  }
+
+  removerEtiqueta(){
+    let idList: String[] = []
+    //this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
+    console.log("CONCLUIR")
+
+    if(idList.length > 0) console.log(idList)
+    else console.log("Não há dados para serem apagados")
   }
 
   dialogFiltrarCodigo(){
@@ -41,8 +93,10 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaCodigo = result.buscaCodigo
-        this.filtro.push(ft)
+        if(result.buscaCodigo){
+          ft.buscaCodigo = result.buscaCodigo
+          this.filtro.push(ft)
+        }
       }
     })
   }
@@ -53,8 +107,10 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaOrigem = result.buscaOrigem
-        this.filtro.push(ft)
+        if(result.buscaOrigem){
+          ft.buscaOrigem = result.buscaOrigem
+          this.filtro.push(ft)
+        }
       }
     })
   }
@@ -65,8 +121,10 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaDestino = result.buscaDestino
-        this.filtro.push(ft)
+        if(result.buscaDestino){
+          ft.buscaDestino = result.buscaDestino
+          this.filtro.push(ft)
+        }
       }
     })
   }
@@ -77,8 +135,10 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaEtiqueta = result.buscaEtiqueta
-        this.filtro.push(ft)
+        if(result.buscaEtiqueta){
+          ft.buscaEtiqueta = result.buscaEtiqueta
+          this.filtro.push(ft)
+        }
       }
     })
   }
@@ -91,9 +151,11 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaDataPostagemInicio = result.buscaDataPostagemInicio
-        ft.buscaDataPostagemFim = result.buscaDataPostagemFim
-        this.filtro.push(ft)
+        if(result.buscaDataPostagemInicio && result.buscaDataPostagemFim){
+          ft.buscaDataPostagemInicio = result.buscaDataPostagemInicio
+          ft.buscaDataPostagemFim = result.buscaDataPostagemFim
+          this.filtro.push(ft)
+        }
       }
     })
   }
@@ -104,27 +166,12 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        ft.buscaDataEntregaInicio = result.buscaDataEntregaInicio
-        ft.buscaDataEntregaFim = result.buscaDataEntregaFim
-        this.filtro.push(ft)
+        if(result.buscaDataEntregaInicio && result.buscaDataEntregaFim){
+          ft.buscaDataEntregaInicio = result.buscaDataEntregaInicio
+          ft.buscaDataEntregaFim = result.buscaDataEntregaFim
+          this.filtro.push(ft)
+        }
       }
     })
-  }
-
-  atualizarObjetosSelecionados(objetosSelecionados: number[]){
-    this.objetosSelecionados = objetosSelecionados
-  }
-
-  removerEncomenda(){
-    let idList: String[] = []
-    this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
-
-    if(idList.length > 0) console.log(idList)
-    else console.log("Não há dados para serem apagados")
-  }
-
-  removerFiltro(filtro: Filtro, index: number){
-    this.filtro.splice(index, 1);
-    console.log(`Removendo index: ${index} -- ${filtro.getString()}`)
   }
 }

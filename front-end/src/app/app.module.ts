@@ -17,6 +17,9 @@ import { ConfiguracaoComponent } from './components/configuracao/configuracao.co
 import { TransportadorasComponent } from './pages/transportadoras/transportadoras.component';
 import { FiltrosComponent } from './components/filtros/filtros.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { CriarEtiquetaComponent } from './components/criar-etiqueta/criar-etiqueta.component';
+import { DescreveEtiquetasComponent } from './components/descreve-etiquetas/descreve-etiquetas.component';
+import { AdicionarEtiquetaComponent } from './components/adicionar-etiqueta/adicionar-etiqueta.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     CadastrarEncomendaComponent,
     ConfiguracaoComponent,
     TransportadorasComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    CriarEtiquetaComponent,
+    DescreveEtiquetasComponent,
+    AdicionarEtiquetaComponent
     ],
   imports: [
     BrowserModule,

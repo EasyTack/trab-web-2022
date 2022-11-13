@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Etiqueta } from 'src/app/model/Etiqueta';
 import { Pacote } from 'src/app/model/Pacote';
+import { DescreveEtiquetasComponent } from '../descreve-etiquetas/descreve-etiquetas.component';
 
 interface custonTable {
   pacote: Pacote,
@@ -16,13 +19,13 @@ export class TabelaEncomendasComponent implements OnInit {
   @Output() eventListSelected: EventEmitter<number[]> = new EventEmitter<number[]>()
 
   @Input() pacotes: Pacote[] = []
-  displayed: String[] = ["select", "codigoOperadorLogistica", "status", "dataPostagem", "dataEntrega", "origem", "destino"]
+  displayed: String[] = ["select", "codigoOperadorLogistica", "status", "dataPostagem", "dataEntrega", "origem", "destino", "etiqueta"]
 
   listaPacoltes: custonTable[] = []
   listaSelecionados: number[] = []
   allComplete: Boolean = false
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -76,5 +79,9 @@ export class TabelaEncomendasComponent implements OnInit {
     this.listaSelecionados = []
     this.listaPacoltes.forEach((c, i) => {if(c.select) this.listaSelecionados.push(i)})
     this.eventListSelected.emit(this.listaSelecionados)
+  }
+
+  dialogDescreveEtiquetas(etiquetas: Etiqueta[]){
+    if(etiquetas.length > 0 ) this.dialog.open(DescreveEtiquetasComponent, {data: etiquetas})
   }
 }

@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Filtros</h1>
 
 <div mat-dialog-content class="content-page">
-    <form [formGroup]="formFilter" class="form-center" [ngSwitch]="tipoFiltro">
+    <form [formGroup]="formFiltro" class="form-center" [ngSwitch]="tipoFiltro">
 
         <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaCodigo()">
             <mat-label>Código da encomenda</mat-label>
@@ -20,9 +20,14 @@
 
         <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaEtiqueta()">
             <mat-label>Etiquetas</mat-label>
-            <mat-select formControlName="buscaEtiqueta">
+            <mat-select formControlName="buscaEtiqueta" [(value)]="idEtiquetaSelecionada">
                 <mat-option [value]="''">Nenhuma</mat-option>
-                <mat-option *ngFor="let e of etiquetas" [value]="e.id">{{e.nome}}</mat-option>
+                <mat-option *ngFor="let e of etiquetas" [value]="e.id">
+                    <div class="cor-content">
+                        <!--<mat-icon [ngStyle]="{'color': e.cor}">local_offer</mat-icon>-->
+                        {{e.nome}}
+                    </div>
+                </mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -30,7 +35,7 @@
 
             <mat-label>Intervalo de Postagem</mat-label>
             <mat-date-range-input
-                [formGroup]="formFilter"
+                [formGroup]="formFiltro"
                 [rangePicker]="campaignOnePicker"
                 [comparisonStart]="auxDate.value.inicio"
                 [comparisonEnd]="auxDate.value.fim">
@@ -49,7 +54,7 @@
 
             <mat-label>Intervalo de Entrega</mat-label>
             <mat-date-range-input
-                [formGroup]="formFilter"
+                [formGroup]="formFiltro"
                 [rangePicker]="campaignOnePicker"
                 [comparisonStart]="auxDate.value.inicio"
                 [comparisonEnd]="auxDate.value.fim">
@@ -66,7 +71,7 @@
     </form>
 
     <div>
-        <button mat-raised-button [mat-dialog-close]="formFilter.value" class="btn-dialog-position-ok btn-filter highlight-button-white">Buscar</button>
+        <button mat-raised-button [mat-dialog-close]="formFiltro.value" class="btn-dialog-position-ok btn-filter highlight-button-white">Buscar</button>
         <button mat-raised-button mat-dialog-close class="btn-dialog-position-cancel btn-filter highlight-button-white">Cancelar</button>
     </div>
 </div>

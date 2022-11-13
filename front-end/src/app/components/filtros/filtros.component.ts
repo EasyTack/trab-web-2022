@@ -14,8 +14,9 @@ import { ConfiguracaoComponent } from '../configuracao/configuracao.component';
 export class FiltrosComponent implements OnInit {
 
   @Output() filterTipes = new EventEmitter()
+  idEtiquetaSelecionada: any
 
-  formFilter: FormGroup
+  formFiltro: FormGroup
   etiquetas: Etiqueta[] = []
 
   auxDate = new FormGroup({
@@ -26,7 +27,7 @@ export class FiltrosComponent implements OnInit {
   constructor(private fb: FormBuilder, private dialog: MatDialogRef <ConfiguracaoComponent>, @Inject(MAT_DIALOG_DATA) public tipoFiltro: TipoFiltro){
     //dialog.disableClose = true;
 
-    this.formFilter = this.createForm(this.fb)
+    this.formFiltro = this.createForm(this.fb)
   }
 
   ngOnInit(): void {
