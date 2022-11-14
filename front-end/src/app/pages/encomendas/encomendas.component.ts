@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { AdicionarEtiquetaComponent } from 'src/app/components/adicionar-etiqueta/adicionar-etiqueta.component';
 import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
 import { CriarEtiquetaComponent } from 'src/app/components/criar-etiqueta/criar-etiqueta.component';
@@ -18,13 +19,20 @@ export class EncomendasComponent implements OnInit {
   @Input() objetosSelecionados: number[] = []
   filtro: Filtro[] = []
 
-  pacotes: Pacote[]
+  pacotes$?: Observable<Pacote[]>
+  pacotes: Pacote[] = []
 
-  constructor(private dialog: MatDialog) {
-    this.pacotes = new PacoteService().getAllPackages()
+  constructor(
+    private dialog: MatDialog,
+    private pacoteService: PacoteService
+  ) {
   }
 
   ngOnInit(): void {
+    //this.pacotes = new PacoteService().getAllPackages()
+    this.pacotes = this.pacoteService.getTodosLista()
+    this.pacotes$ = this.pacoteService.getTodos()
+
     //this.dialogAdicionar()
     //this.dialogFiltrar()
     //this.dialogCriarEtiqueta()

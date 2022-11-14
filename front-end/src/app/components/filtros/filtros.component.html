@@ -28,7 +28,7 @@
                     </div>
                   </mat-select-trigger>
                 <mat-option [value]="">Nenhuma</mat-option>
-                <mat-option *ngFor="let e of etiquetas" [value]="e">
+                <mat-option *ngFor="let e of etiquetas$ | async" [value]="e">
                     <div class="cor-content">
                         <mat-icon [ngStyle]="{'color': e.cor}">local_offer</mat-icon>
                         <h4>{{e.nome}}</h4>

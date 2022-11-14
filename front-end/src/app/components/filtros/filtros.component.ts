@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { Etiqueta } from 'src/app/model/Etiqueta';
 import { Filtro, TipoFiltro } from 'src/app/pages/encomendas/Filtro';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
@@ -17,21 +18,27 @@ export class FiltrosComponent implements OnInit {
   etiquetaSelecionada?: Etiqueta
 
   formFiltro: FormGroup
-  etiquetas: Etiqueta[] = []
+  etiquetas$?: Observable<Etiqueta[]>
 
   auxDate = new FormGroup({
     inicio: new FormControl(),
     fim: new FormControl(),
   });
 
-  constructor(private fb: FormBuilder, private dialog: MatDialogRef <ConfiguracaoComponent>, @Inject(MAT_DIALOG_DATA) public tipoFiltro: TipoFiltro){
+  constructor(
+    private fb: FormBuilder, 
+    private dialog: MatDialogRef <ConfiguracaoComponent>, 
+    @Inject(MAT_DIALOG_DATA) public tipoFiltro: TipoFiltro,
+    private etiquetasService: EtiquetasService
+  ){
     //dialog.disableClose = true;
 
     this.formFiltro = this.createForm(this.fb)
   }
 
   ngOnInit(): void {
-    this.etiquetas = new EtiquetasService().getAllTags()
+    //this.etiquetas = new EtiquetasService().getAllTags()
+    this.etiquetas$ = this.etiquetasService.getTodos()
   }
 
   createForm(fb: FormBuilder){

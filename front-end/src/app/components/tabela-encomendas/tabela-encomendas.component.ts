@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { Etiqueta } from 'src/app/model/Etiqueta';
 import { Pacote } from 'src/app/model/Pacote';
 import { DescreveEtiquetasComponent } from '../descreve-etiquetas/descreve-etiquetas.component';
+import { map } from 'rxjs/operators';  
 
 interface custonTable {
   pacote: Pacote,
@@ -29,6 +31,20 @@ export class TabelaEncomendasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*this.pacotes$?.forEach(
+      (pacotes) => {
+        this.listaPacoltes = pacotes.map((e: Pacote) => {
+          let p: custonTable = {
+            pacote: e,
+            select: false
+          }
+          return p
+        })
+      }
+    )
+
+    console.log(this.listaPacoltes[0])*/
+
     this.listaPacoltes = this.pacotes.map((e) => {
       let p: custonTable = {
         pacote: e,

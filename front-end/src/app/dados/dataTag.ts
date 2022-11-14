@@ -13,10 +13,3 @@ export class dataTag {
         return this.dados
     }
 }
-
-
-
-
-
-
-

@@ -1,6 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { dataLogisticOperator } from '../dados/dataLogisticOperator';
 import { OperadorLogistico } from '../model/OperadorLogistico';
 
 @Injectable({
@@ -8,9 +7,13 @@ import { OperadorLogistico } from '../model/OperadorLogistico';
 })
 export class OperadorLogisticoService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  getAllLogisticOperator(){
-    return new dataLogisticOperator().get()
+  /*getAllLogisticOperator(){
+    return []// new dataLogisticOperator().get()
+  }*/
+
+  getTodos(){
+    return this.http.get<OperadorLogistico[]>('http://localhost:3001/angular/operadorLogistico/getTodos')
   }
 }

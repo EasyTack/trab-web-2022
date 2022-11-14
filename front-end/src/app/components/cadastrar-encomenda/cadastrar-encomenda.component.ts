@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
 import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
 import { PacoteService } from 'src/app/service/pacote.service';
@@ -12,16 +13,20 @@ import { PacoteService } from 'src/app/service/pacote.service';
 })
 export class CadastrarEncomendaComponent implements OnInit {
 
-  trasportadoras: OperadorLogistico[] = []
+  trasportadoras$?: Observable<OperadorLogistico[]>
   formAdicionarEncomenda: FormGroup
 
-  constructor(private fb: FormBuilder, private dialog: MatDialogRef <CadastrarEncomendaComponent>){
+  constructor(
+    private fb: FormBuilder, 
+    private dialog: MatDialogRef <CadastrarEncomendaComponent>, 
+    private operadorLogisticoService: OperadorLogisticoService
+  ){
     this.formAdicionarEncomenda = this.createForm(this.fb)
     dialog.disableClose = true;
   }
 
   ngOnInit(): void {
-    this.trasportadoras = new OperadorLogisticoService().getAllLogisticOperator()
+    this.trasportadoras$ = this.operadorLogisticoService.getTodos()
   }
 
   createForm(fb: FormBuilder){
@@ -38,7 +43,7 @@ export class CadastrarEncomendaComponent implements OnInit {
     }
 
     if(c.idOperadorLogistico && c.codigoOperadorLogistico){
-      new PacoteService().createPackage(c)
+      //new PacoteService().createPackage(c)
       this.close()
     }
   }

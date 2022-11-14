@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
 import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
 
@@ -9,12 +10,12 @@ import { OperadorLogisticoService } from 'src/app/service/operador-logistico.ser
 })
 export class TransportadorasComponent implements OnInit {
 
-  trasportadoras: OperadorLogistico[] = []
+  trasportadoras$?: Observable<OperadorLogistico[]>
 
-  constructor() { }
+  constructor(private operadorLogisticoService: OperadorLogisticoService) { }
 
   ngOnInit(): void {
-    this.trasportadoras = new OperadorLogisticoService().getAllLogisticOperator()
+    this.trasportadoras$ = this.operadorLogisticoService.getTodos()
   }
 
 }

@@ -1,0 +1,136 @@
+{
+  "uuid": "37404082-81a9-4e32-8f35-19c43668c86f",
+  "lastMigration": 24,
+  "name": "Mockoon",
+  "endpointPrefix": "angular",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "0d85ecd4-b2f9-456d-be78-f835a72aaef6",
+      "documentation": "obter todos os operadores logísticos",
+      "method": "get",
+      "endpoint": "operadorLogistico/getTodos",
+      "responses": [
+        {
+          "uuid": "148ffe7d-c4ac-4ec5-a57d-9aa493d89e12",
+          "body": "[\n  {\"id\": \"001\", \"cnpj\": \"34.028.316/0001-03\", \"razaoSocial\": \"Empresa Brasileira de Correios e Telégrafos\", \"nomeFantasia\": \"Correios\"},\n  {\"id\": \"002\", \"cnpj\": \"04.884.082/0001-35\", \"razaoSocial\": \"Jadlog Logistica S.A\", \"nomeFantasia\": \"Jadlog\"},\n  {\"id\": \"003\", \"cnpj\": \"95.591.723/0168-99\", \"razaoSocial\": \"Tnt Mercurio Cargas e Encomendas Expressas LTDA\", \"nomeFantasia\": \"TNT\"},\n  {\"id\": \"004\", \"cnpj\": \"20.147.617/0001-41\", \"razaoSocial\": \"Jamef Transportes Eireli\", \"nomeFantasia\": \"Jamef Encomendas Urgentes\"},\n  {\"id\": \"005\", \"cnpj\": \"17.765.676/0001-79\", \"razaoSocial\": \"J.F.B. Log Transportes LTDA\", \"nomeFantasia\": \"JFB\"}\n]\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "35068c73-1ddf-4c6e-9e98-64495be01021",
+      "documentation": "obter todas as etiquetas",
+      "method": "get",
+      "endpoint": "etiqueta/getTodos",
+      "responses": [
+        {
+          "uuid": "276f0a51-a84b-44bc-81b2-d9df57c6e9f8",
+          "body": "[\n    {\"id\": \"tag001\", \"nome\": \"Presente\", \"cor\": \"#00bfff\", \"codigo\": \"\"},\n    {\"id\": \"tag002\", \"nome\": \"Trabalho\", \"cor\": \"#0000ff\", \"codigo\": \"\"},\n    {\"id\": \"tag003\", \"nome\": \"Enfeites de Natal\", \"cor\": \"#8000ff\", \"codigo\": \"\"},\n    {\"id\": \"tag004\", \"nome\": \"Computador Gamer\", \"cor\": \"#ff0080\", \"codigo\": \"\"},\n    {\"id\": \"tag005\", \"nome\": \"Esposa\", \"cor\": \"#ffff00\", \"codigo\": \"\"},\n    {\"id\": \"tag006\", \"nome\": \"Filho\", \"cor\": \"#ffe6e6\", \"codigo\": \"\"}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "2e637951-6d25-4c9f-8a5d-ffec68712827",
+      "documentation": "obtem todos os pacotes",
+      "method": "get",
+      "endpoint": "pacote/getTodos",
+      "responses": [
+        {
+          "uuid": "6f78ae40-574b-499c-bcfd-b1cfbeee0321",
+          "body": "[\n  {\"id\": \"001\", \"codigoOperadorLogistica\": \"AA123456789BR\", \"localOrigem\": \"Salvador-BA\", \"localDestino\": \"Rio de Janeiro-RJ\", \"dataPostagem\": \"Fri Sep 11 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Wed Oct 14 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"002\", \"codigoOperadorLogistica\": \"AA357159642FR\", \"localOrigem\": \"Belo Horizonte-MG\", \"localDestino\": \"Campinas-SP\", \"dataPostagem\": \"Mon May 24 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue Jun 29 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"003\", \"codigoOperadorLogistica\": \"AS975412545IN\", \"localOrigem\": \"Palmas-TO\", \"localDestino\": \"Bom Jesus-ES\", \"dataPostagem\": \"Tue Feb 01 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Mon Feb 14 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"004\", \"codigoOperadorLogistica\": \"AT951748563UE\", \"localOrigem\": \"Bom-Jesus-RJ\", \"localDestino\": \"Boa Vista-RO\", \"dataPostagem\": \"Fri Dec 31 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue Jan 25 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"005\", \"codigoOperadorLogistica\": \"SL917346285JP\", \"localOrigem\": \"Florianópolis-SC\", \"localDestino\": \"Porto Alegre-RS\", \"dataPostagem\": \"Sun Sep 06 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue Sep 29 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"006\", \"codigoOperadorLogistica\": \"BF551648751ES\", \"localOrigem\": \"Maceió-AL\", \"localDestino\": \"Recipe-PE\", \"dataPostagem\": \"Tue Jul 14 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue Sep 29 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"007\", \"codigoOperadorLogistica\": \"BE858264132AL\", \"localOrigem\": \"João Pessoa-PB\", \"localDestino\": \"Natal-RN\", \"dataPostagem\": \"Tue Apr 13 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue May 04 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"008\", \"codigoOperadorLogistica\": \"CK421597565CH\", \"localOrigem\": \"Goiânia-GO\", \"localDestino\": \"Colatina-ES\", \"dataPostagem\": \"Sat Apr 11 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Fri Apr 24 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"009\", \"codigoOperadorLogistica\": \"CM664425711CH\", \"localOrigem\": \"São Gonçalo-RJ\", \"localDestino\": \"Guarulhos-SP\", \"dataPostagem\": \"Wed Sep 08 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília\", \"dataEntrega\": \"Wed Oct 06 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"},\n  {\"id\": \"010\", \"codigoOperadorLogistica\": \"CO162516800TW\", \"localOrigem\": \"Duque de Caxias-RJ\", \"localDestino\": \"Guarulhos-SP\", \"dataPostagem\": \"Sat Apr 30 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)\", \"dataEntrega\": \"Tue May 31 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)\"}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

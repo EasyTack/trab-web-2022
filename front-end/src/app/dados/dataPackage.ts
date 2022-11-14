@@ -52,9 +52,15 @@ export class dataPackage {
     }
 }
 
-
-
-
-
-
-
+/*[
+    {"id": "001", "codigoOperadorLogistica": "AA123456789BR", "localOrigem": "Salvador-BA", "localDestino": "Rio de Janeiro-RJ", "dataPostagem": "Fri Sep 11 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Wed Oct 14 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "002", "codigoOperadorLogistica": "AA357159642FR", "localOrigem": "Belo Horizonte-MG", "localDestino": "Campinas-SP", "dataPostagem": "Mon May 24 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue Jun 29 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "003", "codigoOperadorLogistica": "AS975412545IN", "localOrigem": "Palmas-TO", "localDestino": "Bom Jesus-ES", "dataPostagem": "Tue Feb 01 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Mon Feb 14 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "004", "codigoOperadorLogistica": "AT951748563UE", "localOrigem": "Bom-Jesus-RJ", "localDestino": "Boa Vista-RO", "dataPostagem": "Fri Dec 31 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue Jan 25 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "005", "codigoOperadorLogistica": "SL917346285JP", "localOrigem": "Florianópolis-SC", "localDestino": "Porto Alegre-RS", "dataPostagem": "Sun Sep 06 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue Sep 29 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "006", "codigoOperadorLogistica": "BF551648751ES", "localOrigem": "Maceió-AL", "localDestino": "Recipe-PE", "dataPostagem": "Tue Jul 14 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue Sep 29 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "007", "codigoOperadorLogistica": "BE858264132AL", "localOrigem": "João Pessoa-PB", "localDestino": "Natal-RN", "dataPostagem": "Tue Apr 13 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue May 04 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "008", "codigoOperadorLogistica": "CK421597565CH", "localOrigem": "Goiânia-GO", "localDestino": "Colatina-ES", "dataPostagem": "Sat Apr 11 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Fri Apr 24 2020 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "009", "codigoOperadorLogistica": "CM664425711CH", "localOrigem": "São Gonçalo-RJ", "localDestino": "Guarulhos-SP", "dataPostagem": "Wed Sep 08 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília", "dataEntrega": "Wed Oct 06 2021 21:00:00 GMT-0300 (Horário Padrão de Brasília)"},
+    {"id": "010", "codigoOperadorLogistica": "CO162516800TW", "localOrigem": "Duque de Caxias-RJ", "localDestino": "Guarulhos-SP", "dataPostagem": "Sat Apr 30 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)", "dataEntrega": "Tue May 31 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)"}
+]*/

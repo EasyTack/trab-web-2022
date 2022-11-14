@@ -3,7 +3,7 @@
         <h1 class="title">Transportadoras</h1>
 
         <mat-list>
-            <div *ngFor="let t of trasportadoras">
+            <div *ngFor="let t of trasportadoras$ | async">
                 <div class="item">
                     <h3>{{t.nomeFantasia}}</h3>
                     <h4><b>Razão Social:</b> {{t.razaoSocial}}</h4>

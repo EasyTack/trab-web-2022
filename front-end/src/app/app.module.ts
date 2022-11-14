@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from 'src/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
@@ -40,14 +41,15 @@ import { AdicionarEtiquetaComponent } from './components/adicionar-etiqueta/adic
     ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-br'},
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-br'}
   ],
   bootstrap: [AppComponent]
 })

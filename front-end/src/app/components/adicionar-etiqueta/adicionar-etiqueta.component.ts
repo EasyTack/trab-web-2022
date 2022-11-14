@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Etiqueta } from 'src/app/model/Etiqueta';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
 
@@ -10,15 +11,19 @@ import { EtiquetasService } from 'src/app/service/etiquetas.service';
 })
 export class AdicionarEtiquetaComponent implements OnInit {
 
-  etiquetas: Etiqueta[] = []
+  etiquetas$?: Observable<Etiqueta[]>
   etiquetaSelecionada?: Etiqueta
   formAdionarEtiqueta: FormGroup
 
-  constructor(private fb: FormBuilder) { 
+  constructor(
+    private fb: FormBuilder,
+    private etiquetasService: EtiquetasService
+  ) { 
     this.formAdionarEtiqueta =  fb.group({etiqueta: []})
   }
 
   ngOnInit(): void {
-    this.etiquetas = new EtiquetasService().getAllTags()
+    //this.etiquetas = new EtiquetasService().getAllTags()
+    this.etiquetas$ = this.etiquetasService.getTodos()
   }
 }

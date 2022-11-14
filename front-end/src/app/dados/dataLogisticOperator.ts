@@ -13,10 +13,3 @@ export class dataLogisticOperator {
         return this.dados
     }
 }
-
-
-
-
-
-
-

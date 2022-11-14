@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { dataPackage } from '../dados/dataPackage';
 import { Pacote } from '../model/Pacote';
@@ -7,13 +8,17 @@ import { Pacote } from '../model/Pacote';
 })
 export class PacoteService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   createPackage(data: any){
     console.log(data)
   }
 
-  getAllPackages(): Pacote[]{
+  getTodosLista(): Pacote[]{
     return new dataPackage().get()
+  }
+
+  getTodos(){
+    return this.http.get<Pacote[]>('http://localhost:3001/angular/pacote/getTodos')
   }
 }
