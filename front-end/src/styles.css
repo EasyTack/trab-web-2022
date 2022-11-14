@@ -5,6 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :root {
     --color-background: linear-gradient(to right top, #fdfdfd, #dbd5f9, #b7aff4, #9189ee, #6565e7);
     --color-page: white;
+    /*--color-page: rgb(234, 235, 238);*/
 }
 
 .title {

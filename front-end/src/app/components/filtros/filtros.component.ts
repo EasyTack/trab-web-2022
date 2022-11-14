@@ -14,7 +14,7 @@ import { ConfiguracaoComponent } from '../configuracao/configuracao.component';
 export class FiltrosComponent implements OnInit {
 
   @Output() filterTipes = new EventEmitter()
-  idEtiquetaSelecionada: any
+  etiquetaSelecionada?: Etiqueta
 
   formFiltro: FormGroup
   etiquetas: Etiqueta[] = []
@@ -39,7 +39,7 @@ export class FiltrosComponent implements OnInit {
       buscaCodigo: [''],
       buscaOrigem: [''],
       buscaDestino: [''],
-      buscaEtiqueta: [''],
+      buscaEtiqueta: [],
       buscaPeriodoInicio: [],
       buscaPeriodoFim: []
     })

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { dataLogisticOperator } from '../dados/dataLogisticOperator';
 import { OperadorLogistico } from '../model/OperadorLogistico';
 
@@ -9,7 +10,7 @@ export class OperadorLogisticoService {
 
   constructor() { }
 
-  getAllLogisticOperator(): OperadorLogistico[]{
+  getAllLogisticOperator(){
     return new dataLogisticOperator().get()
   }
 }

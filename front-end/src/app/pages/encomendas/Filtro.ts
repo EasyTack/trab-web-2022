@@ -32,7 +32,7 @@ export class Filtro {
             case TipoFiltro.Codigo: return `Código: ${this.buscaCodigo}`
             case TipoFiltro.Origem: return `Origem: ${this.buscaOrigem}`
             case TipoFiltro.Destino: return `Destino: ${this.buscaDestino}`
-            case TipoFiltro.Etiqueta: return `Etiqueta: ${this.buscaEtiqueta}`
+            case TipoFiltro.Etiqueta: return `Etiqueta: ${this.buscaEtiqueta?.nome}`
             case TipoFiltro.Status: return `Status: ${this.buscaStatus}`
             case TipoFiltro.DataPostagem: return `Período Postagem: ${this.formatarData(this.buscaDataPostagemInicio)} - ${this.formatarData(this.buscaDataPostagemFim)}`
             case TipoFiltro.DataEntrega: return `Período Entrega: ${this.formatarData(this.buscaDataEntregaInicio)} - ${this.formatarData(this.buscaDataPostagemFim)}`

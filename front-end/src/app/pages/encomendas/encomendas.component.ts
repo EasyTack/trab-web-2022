@@ -29,6 +29,7 @@ export class EncomendasComponent implements OnInit {
     //this.dialogFiltrar()
     //this.dialogCriarEtiqueta()
     //this.dialogFiltrarEtiqueta()
+    //this.dialogAdicionarEtiqueta()
   }
 
   atualizarObjetosSelecionados(objetosSelecionados: number[]){
@@ -72,8 +73,7 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        if(result.id)
-          console.log(result)
+        console.log(result.nome)
       }
     })
   }
@@ -92,11 +92,9 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Codigo})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaCodigo){
-          ft.buscaCodigo = result.buscaCodigo
-          this.filtro.push(ft)
-        }
+      if(result?.buscaCodigo){
+        ft.buscaCodigo = result.buscaCodigo
+        this.filtro.push(ft)
       }
     })
   }
@@ -106,11 +104,9 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Origem})    
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaOrigem){
-          ft.buscaOrigem = result.buscaOrigem
-          this.filtro.push(ft)
-        }
+      if(result?.buscaOrigem){
+        ft.buscaOrigem = result.buscaOrigem
+        this.filtro.push(ft)
       }
     })
   }
@@ -120,11 +116,9 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Destino}) 
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaDestino){
-          ft.buscaDestino = result.buscaDestino
-          this.filtro.push(ft)
-        }
+      if(result?.buscaDestino){
+        ft.buscaDestino = result.buscaDestino
+        this.filtro.push(ft)
       }
     })
   }
@@ -134,11 +128,9 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Etiqueta})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaEtiqueta){
-          ft.buscaEtiqueta = result.buscaEtiqueta
-          this.filtro.push(ft)
-        }
+      if(result?.buscaEtiqueta){
+        ft.buscaEtiqueta = result.buscaEtiqueta
+        this.filtro.push(ft)
       }
     })
   }
@@ -150,12 +142,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataPostagem})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaDataPostagemInicio && result.buscaDataPostagemFim){
-          ft.buscaDataPostagemInicio = result.buscaDataPostagemInicio
-          ft.buscaDataPostagemFim = result.buscaDataPostagemFim
-          this.filtro.push(ft)
-        }
+      if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
+        ft.buscaDataPostagemInicio = result.buscaPeriodoInicio
+        ft.buscaDataPostagemFim = result.buscaPeriodoFim
+        this.filtro.push(ft)
       }
     })
   }
@@ -165,12 +155,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataEntrega})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.buscaDataEntregaInicio && result.buscaDataEntregaFim){
-          ft.buscaDataEntregaInicio = result.buscaDataEntregaInicio
-          ft.buscaDataEntregaFim = result.buscaDataEntregaFim
-          this.filtro.push(ft)
-        }
+      if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
+        ft.buscaDataEntregaInicio = result.buscaPeriodoInicio
+        ft.buscaDataEntregaFim = result.buscaPeriodoFim
+        this.filtro.push(ft)
       }
     })
   }

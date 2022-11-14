@@ -11,10 +11,11 @@ import { EtiquetasService } from 'src/app/service/etiquetas.service';
 export class AdicionarEtiquetaComponent implements OnInit {
 
   etiquetas: Etiqueta[] = []
+  etiquetaSelecionada?: Etiqueta
   formAdionarEtiqueta: FormGroup
 
   constructor(private fb: FormBuilder) { 
-    this.formAdionarEtiqueta =  fb.group({id: []})
+    this.formAdionarEtiqueta =  fb.group({etiqueta: []})
   }
 
   ngOnInit(): void {

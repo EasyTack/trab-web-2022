@@ -20,12 +20,18 @@
 
         <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaEtiqueta()">
             <mat-label>Etiquetas</mat-label>
-            <mat-select formControlName="buscaEtiqueta" [(value)]="idEtiquetaSelecionada">
-                <mat-option [value]="''">Nenhuma</mat-option>
-                <mat-option *ngFor="let e of etiquetas" [value]="e.id">
+            <mat-select formControlName="buscaEtiqueta" [(value)]="etiquetaSelecionada">
+                <mat-select-trigger>
                     <div class="cor-content">
-                        <!--<mat-icon [ngStyle]="{'color': e.cor}">local_offer</mat-icon>-->
-                        {{e.nome}}
+                        <mat-icon [ngStyle]="{'color': etiquetaSelecionada?.cor}">local_offer</mat-icon>
+                        <h4>{{etiquetaSelecionada?.nome}}</h4>
+                    </div>
+                  </mat-select-trigger>
+                <mat-option [value]="">Nenhuma</mat-option>
+                <mat-option *ngFor="let e of etiquetas" [value]="e">
+                    <div class="cor-content">
+                        <mat-icon [ngStyle]="{'color': e.cor}">local_offer</mat-icon>
+                        <h4>{{e.nome}}</h4>
                     </div>
                 </mat-option>
             </mat-select>
