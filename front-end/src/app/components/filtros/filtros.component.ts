@@ -3,8 +3,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Etiqueta } from 'src/app/model/Etiqueta';
-import { Filtro, TipoFiltro } from 'src/app/pages/encomendas/Filtro';
+import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
+import { TipoFiltro } from 'src/app/pages/encomendas/Filtro';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
+import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
 import { ConfiguracaoComponent } from '../configuracao/configuracao.component';
 
 @Component({
@@ -19,6 +21,7 @@ export class FiltrosComponent implements OnInit {
 
   formFiltro: FormGroup
   etiquetas$?: Observable<Etiqueta[]>
+  operadoresLogisticos$?: Observable<OperadorLogistico[]>
 
   auxDate = new FormGroup({
     inicio: new FormControl(),
@@ -29,7 +32,8 @@ export class FiltrosComponent implements OnInit {
     private fb: FormBuilder, 
     private dialog: MatDialogRef <ConfiguracaoComponent>, 
     @Inject(MAT_DIALOG_DATA) public tipoFiltro: TipoFiltro,
-    private etiquetasService: EtiquetasService
+    private etiquetasService: EtiquetasService,
+    private operadorLogisticoService: OperadorLogisticoService
   ){
     //dialog.disableClose = true;
 
@@ -37,13 +41,14 @@ export class FiltrosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.etiquetas = new EtiquetasService().getAllTags()
-    this.etiquetas$ = this.etiquetasService.getTodos()
+    if(this.tipoFiltro == TipoFiltro.OperadorLogistico) this.operadoresLogisticos$ = this.operadorLogisticoService.getTodos()
+    if(this.tipoFiltro == TipoFiltro.Etiqueta) this.etiquetas$ = this.etiquetasService.getTodos()
   }
 
   createForm(fb: FormBuilder){
     return fb.group({
       buscaCodigo: [''],
+      buscaOperadorLogistico: [],
       buscaOrigem: [''],
       buscaDestino: [''],
       buscaEtiqueta: [],
@@ -53,6 +58,7 @@ export class FiltrosComponent implements OnInit {
   }
 
   tipoBuscaCodigo(): TipoFiltro { return TipoFiltro.Codigo }
+  tipoOperadorLogistico(): TipoFiltro { return TipoFiltro.OperadorLogistico }
   tipoBuscaOrigem(): TipoFiltro { return TipoFiltro.Origem }
   tipoBuscaDestino(): TipoFiltro { return TipoFiltro.Destino }
   tipoBuscaEtiqueta(): TipoFiltro { return TipoFiltro.Etiqueta }

@@ -37,6 +37,16 @@
             </mat-select>
         </mat-form-field>
 
+        <mat-form-field appearance="outline" *ngSwitchCase="tipoOperadorLogistico()">
+            <mat-label>Transportadora</mat-label>
+            <mat-select formControlName="buscaOperadorLogistico">
+                <mat-option [value]="">Nenhuma</mat-option>
+                <mat-option *ngFor="let e of operadoresLogisticos$ | async" [value]="e">
+                    {{e.nomeFantasia}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" *ngSwitchCase="tipoBuscaDataPostagem()">
 
             <mat-label>Intervalo de Postagem</mat-label>

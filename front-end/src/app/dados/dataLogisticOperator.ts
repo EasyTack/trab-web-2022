@@ -1,7 +1,7 @@
 import { OperadorLogistico } from "../model/OperadorLogistico"
 
 export class dataLogisticOperator {
-    dados: OperadorLogistico[] = []
+    /*dados: OperadorLogistico[] = []
 
     get(){
         this.dados.push(new OperadorLogistico("001", "34.028.316/0001-03", "Empresa Brasileira de Correios e Telégrafos ", "Correios"))
@@ -11,5 +11,5 @@ export class dataLogisticOperator {
         this.dados.push(new OperadorLogistico("005", "	17.765.676/0001-79", "J.F.B. Log Transportes LTDA", "JFB"))
 
         return this.dados
-    }
+    }*/
 }

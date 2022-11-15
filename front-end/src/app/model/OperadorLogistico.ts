@@ -5,10 +5,10 @@ export class OperadorLogistico  extends Entidade{
     cnpj: String
     razaoSocial: String
     nomeFantasia: String
-    pacotes?: Pacote[]
+    pacotes: Pacote[] = []
 
-    constructor(id: String, cnpj: String, razaoSocial: String, nomeFantasia: String){
-        super(id)
+    constructor(cnpj: String, razaoSocial: String, nomeFantasia: String){
+        super()
         this.cnpj = cnpj
         this.razaoSocial = razaoSocial
         this.nomeFantasia = nomeFantasia

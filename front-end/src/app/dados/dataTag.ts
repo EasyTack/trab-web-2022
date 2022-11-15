@@ -1,7 +1,7 @@
 import { Etiqueta } from "../model/Etiqueta";
 
 export class dataTag {
-    dados: Etiqueta[] = []
+    /*dados: Etiqueta[] = []
 
     get(){
         this.dados.push(new Etiqueta("tag001", "Presente", "#00bfff", ""))
@@ -11,5 +11,5 @@ export class dataTag {
         this.dados.push(new Etiqueta("tag005", "Esposa", "#ffff00", ""))
         this.dados.push(new Etiqueta("tag006", "Filho", "#ffe6e6", ""))
         return this.dados
-    }
+    }*/
 }

@@ -1,7 +1,9 @@
 import { Etiqueta } from "src/app/model/Etiqueta"
+import { OperadorLogistico } from "src/app/model/OperadorLogistico"
 
 export enum TipoFiltro {
     Codigo,
+    OperadorLogistico,
     Origem,
     Destino,
     Etiqueta,
@@ -14,6 +16,7 @@ export class Filtro {
     tipoFiltro?: TipoFiltro
 
     buscaCodigo?: String
+    buscaOperadorLogistico?: OperadorLogistico
     buscaOrigem?: String
     buscaDestino?: String
     buscaEtiqueta?: Etiqueta
@@ -30,6 +33,7 @@ export class Filtro {
     getString(): String{
         switch(this.tipoFiltro){
             case TipoFiltro.Codigo: return `Código: ${this.buscaCodigo}`
+            case TipoFiltro.OperadorLogistico: return `Operador Logístico: ${this.buscaOperadorLogistico?.nomeFantasia}`
             case TipoFiltro.Origem: return `Origem: ${this.buscaOrigem}`
             case TipoFiltro.Destino: return `Destino: ${this.buscaDestino}`
             case TipoFiltro.Etiqueta: return `Etiqueta: ${this.buscaEtiqueta?.nome}`

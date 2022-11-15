@@ -1,11 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { merge, Observable } from 'rxjs';
 import { AdicionarEtiquetaComponent } from 'src/app/components/adicionar-etiqueta/adicionar-etiqueta.component';
 import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
 import { CriarEtiquetaComponent } from 'src/app/components/criar-etiqueta/criar-etiqueta.component';
 import { FiltrosComponent } from 'src/app/components/filtros/filtros.component';
-import { Pacote } from 'src/app/model/Pacote';
+import { ControladorTabela } from 'src/app/components/tabela-encomendas/ControladorTabela';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { Filtro, TipoFiltro } from './Filtro';
 
@@ -16,13 +15,8 @@ import { Filtro, TipoFiltro } from './Filtro';
 })
 export class EncomendasComponent implements OnInit {
 
-  @Input() objetosSelecionados: number[] = []
-  filtro: Filtro[] = []
-
-  pacotes$?: Observable<Pacote[]>
-  //pacotes: Pacote[] = []
-
-  //listaPacotes$?: Observable<custonTable[]>
+  filtros: Filtro[] = []
+  listaPacotes$ = new ControladorTabela(this.pacoteService)
 
   constructor(
     private dialog: MatDialog,
@@ -31,9 +25,7 @@ export class EncomendasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.pacotes = new PacoteService().getAllPackages()
-    //this.pacotes = this.pacoteService.getTodosLista()
-    //this.pacotes$ = this.pacoteService.getTodos()
+    this.listaPacotes$?.buscaTodos()
 
     //this.dialogAdicionar()
     //this.dialogFiltrar()
@@ -42,14 +34,6 @@ export class EncomendasComponent implements OnInit {
     //this.dialogAdicionarEtiqueta()
   }
 
-  atualizarObjetosSelecionados(objetosSelecionados: number[]){
-    this.objetosSelecionados = objetosSelecionados
-  }
-
-  removerFiltro(filtro: Filtro, index: number){
-    this.filtro.splice(index, 1);
-    console.log(`Removendo index: ${index} -- ${filtro.getString()}`)
-  }
 
   dialogAdicionarEncomenda(){
     const dialogRef = this.dialog.open(CadastrarEncomendaComponent);
@@ -60,22 +44,20 @@ export class EncomendasComponent implements OnInit {
   }
 
   removerEncomenda(){
-    /*let idList: String[] = []
-    this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
+    console.log("Considerações a serem feitas")
 
-    if(idList.length > 0) console.log(idList)
-    else console.log("Não há dados para serem apagados")*/
+    if(this.listaPacotes$.idPacotesSelecionados().length > 0)
+      console.log(`Excluir encomendas: ${this.listaPacotes$.idPacotesSelecionados()}`)
   }
 
   dialogCriarEtiqueta(){
     const dialogRef = this.dialog.open(CriarEtiquetaComponent)
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.nome && result.cor && (this.objetosSelecionados.length > 0))
-          console.log(result)
+      if(result?.nome && result?.cor && (this.listaPacotes$.idPacotesSelecionados().length > 0))
+        console.log(`Criar etiqueta: ${result.nome}, ID(s):  ${this.listaPacotes$.idPacotesSelecionados()}`)
       }
-    })
+    )
   }
 
   dialogAdicionarEtiqueta(){
@@ -83,18 +65,16 @@ export class EncomendasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(result.nome)
+        console.log(`Adicionar etiqueta: ${result.nome} ID(s): ${this.listaPacotes$.idPacotesSelecionados()}`)
       }
     })
   }
 
   removerEtiqueta(){
-    let idList: String[] = []
-    //this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
-    console.log("CONCLUIR")
+    console.log("Considerações a serem feitas")
 
-    if(idList.length > 0) console.log(idList)
-    else console.log("Não há dados para serem apagados")
+    if(this.listaPacotes$.idPacotesSelecionados().length > 0)
+      console.log(`Remover etiquetas: ${this.listaPacotes$.idPacotesSelecionados()}`)
   }
 
   dialogFiltrarCodigo(){
@@ -104,7 +84,21 @@ export class EncomendasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result?.buscaCodigo){
         ft.buscaCodigo = result.buscaCodigo
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
+      }
+    })
+  }
+
+  dialogFiltrarOperadorLogistico(){
+    let ft = new Filtro(TipoFiltro.OperadorLogistico)
+    const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.OperadorLogistico})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result?.buscaOperadorLogistico){
+        ft.buscaOperadorLogistico = result.buscaOperadorLogistico
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
   }
@@ -116,7 +110,8 @@ export class EncomendasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result?.buscaOrigem){
         ft.buscaOrigem = result.buscaOrigem
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
   }
@@ -128,7 +123,8 @@ export class EncomendasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result?.buscaDestino){
         ft.buscaDestino = result.buscaDestino
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
   }
@@ -140,7 +136,8 @@ export class EncomendasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result?.buscaEtiqueta){
         ft.buscaEtiqueta = result.buscaEtiqueta
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
   }
@@ -155,7 +152,8 @@ export class EncomendasComponent implements OnInit {
       if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
         ft.buscaDataPostagemInicio = result.buscaPeriodoInicio
         ft.buscaDataPostagemFim = result.buscaPeriodoFim
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
   }
@@ -168,8 +166,14 @@ export class EncomendasComponent implements OnInit {
       if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
         ft.buscaDataEntregaInicio = result.buscaPeriodoInicio
         ft.buscaDataEntregaFim = result.buscaPeriodoFim
-        this.filtro.push(ft)
+        this.filtros.push(ft)
+        this.listaPacotes$.buscaCustom(this.filtros)
       }
     })
+  }
+
+  removerFiltro(filtro: Filtro, index: number){
+    this.filtros.splice(index, 1);
+    this.listaPacotes$.buscaCustom(this.filtros)
   }
 }

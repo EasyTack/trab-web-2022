@@ -9,10 +9,6 @@ export class OperadorLogisticoService {
 
   constructor(private http: HttpClient) {}
 
-  /*getAllLogisticOperator(){
-    return []// new dataLogisticOperator().get()
-  }*/
-
   getTodos(){
     return this.http.get<OperadorLogistico[]>('http://localhost:3001/angular/operadorLogistico/getTodos')
   }

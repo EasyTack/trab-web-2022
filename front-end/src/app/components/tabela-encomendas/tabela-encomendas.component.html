@@ -1,12 +1,14 @@
-<table mat-table [dataSource]="listaPacotes$">
+<div class="spinner-container" *ngIf="listaPacotes$.carregango$ | async">
+    <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
 
+<table mat-table [dataSource]="listaPacotes$">
     <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
-            <!--<mat-checkbox checked="{{allComplete}}" indeterminate="{{someComplete()}}" (change)="updateAll($event.checked)" color="primary"></mat-checkbox>-->
-            <mat-checkbox checked="{{allComplete}}"color="primary"></mat-checkbox>
+            <mat-checkbox checked="{{listaPacotes$.todosSeleciondos}}" indeterminate="{{listaPacotes$.algunsSelecionados}}" (change)="listaPacotes$.checkboxTodosClicado($event.checked)" color="primary"></mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let element">
-            <mat-checkbox [checked]="element.select" (change)="handleRowClick(element)" color="primary"></mat-checkbox>
+            <mat-checkbox [checked]="element.select" (change)="listaPacotes$.checkboxLinhaClicado(element)" color="primary"></mat-checkbox>
         </td>
     </ng-container>
 

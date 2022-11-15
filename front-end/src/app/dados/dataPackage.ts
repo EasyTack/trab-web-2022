@@ -5,9 +5,9 @@ import { dataTag } from "./dataTag";
 export class dataPackage {
     dados: Pacote[] = []
 
-    etiquetas: Etiqueta[] = new dataTag().get()
+    //etiquetas: Etiqueta[] = new dataTag().get()
 
-    get(){
+    /*get(){
         let p1, p2, p3, p4, p5, p6, p7, p8, p9, p10
 
         p1 = new Pacote("001", "AA123456789BR", "Salvador-BA", "Rio de Janeiro-RJ", new Date("2020-09-12"), new Date("2020-10-15"))
@@ -37,7 +37,7 @@ export class dataPackage {
         this.dados = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]
 
 
-        /*this.dados.push(new Pacote("001", "AA123456789BR", "Salvador-BA", "Rio de Janeiro-RJ", new Date("2020-09-12"), new Date("2020-10-15")))
+        this.dados.push(new Pacote("001", "AA123456789BR", "Salvador-BA", "Rio de Janeiro-RJ", new Date("2020-09-12"), new Date("2020-10-15")))
         this.dados.push(new Pacote("002", "AA357159642FR", "Belo Horizonte-MG", "Campinas-SP", new Date("2021-05-25"), new Date("2021-06-30")))
         this.dados.push(new Pacote("003", "AS975412545IN", "Palmas-TO", "Bom Jesus-ES", new Date("2022-02-02"), new Date("2022-02-15")))
         this.dados.push(new Pacote("004", "AT951748563UE", "Bom-Jesus-RJ", "Boa Vista-RO", new Date("2022-01-01"), new Date("2022-01-26")))
@@ -46,10 +46,10 @@ export class dataPackage {
         this.dados.push(new Pacote("007", "BE858264132AL", "João Pessoa-PB", "Natal-RN", new Date("2021-04-14"), new Date("2021-05-05")))
         this.dados.push(new Pacote("008", "CK421597565CH", "Goiânia-GO", "Colatina-ES", new Date("2020-04-12"), new Date("2020-04-25")))
         this.dados.push(new Pacote("009", "CM664425711CH", "São Gonçalo-RJ", "Guarulhos-SP", new Date("2021-09-09"), new Date("2021-10-07")))
-        this.dados.push(new Pacote("010", "CO162516800TW", "Duque de Caxias-RJ", "Guarulhos-SP", new Date("2022-05-01"), new Date("2022-06-01")))*/
+        this.dados.push(new Pacote("010", "CO162516800TW", "Duque de Caxias-RJ", "Guarulhos-SP", new Date("2022-05-01"), new Date("2022-06-01")))
 
         return this.dados
-    }
+    }*/
 }
 
 /*[
