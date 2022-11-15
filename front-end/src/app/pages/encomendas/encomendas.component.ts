@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { merge, Observable } from 'rxjs';
 import { AdicionarEtiquetaComponent } from 'src/app/components/adicionar-etiqueta/adicionar-etiqueta.component';
 import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
 import { CriarEtiquetaComponent } from 'src/app/components/criar-etiqueta/criar-etiqueta.component';
@@ -20,7 +20,9 @@ export class EncomendasComponent implements OnInit {
   filtro: Filtro[] = []
 
   pacotes$?: Observable<Pacote[]>
-  pacotes: Pacote[] = []
+  //pacotes: Pacote[] = []
+
+  //listaPacotes$?: Observable<custonTable[]>
 
   constructor(
     private dialog: MatDialog,
@@ -30,8 +32,8 @@ export class EncomendasComponent implements OnInit {
 
   ngOnInit(): void {
     //this.pacotes = new PacoteService().getAllPackages()
-    this.pacotes = this.pacoteService.getTodosLista()
-    this.pacotes$ = this.pacoteService.getTodos()
+    //this.pacotes = this.pacoteService.getTodosLista()
+    //this.pacotes$ = this.pacoteService.getTodos()
 
     //this.dialogAdicionar()
     //this.dialogFiltrar()
@@ -58,11 +60,11 @@ export class EncomendasComponent implements OnInit {
   }
 
   removerEncomenda(){
-    let idList: String[] = []
+    /*let idList: String[] = []
     this.objetosSelecionados.forEach((i)=>{idList.push(this.pacotes[i].id)})
 
     if(idList.length > 0) console.log(idList)
-    else console.log("Não há dados para serem apagados")
+    else console.log("Não há dados para serem apagados")*/
   }
 
   dialogCriarEtiqueta(){
