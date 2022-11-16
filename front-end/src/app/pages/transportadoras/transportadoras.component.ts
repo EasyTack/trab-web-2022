@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
+import { OperadorLogistico } from 'src/app/model/operadorLogistico.model';
 import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
 
 @Component({
@@ -17,5 +17,4 @@ export class TransportadorasComponent implements OnInit {
   ngOnInit(): void {
     this.trasportadoras$ = this.operadorLogisticoService.getTodos()
   }
-
 }

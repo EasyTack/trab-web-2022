@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
+import { OperadorLogistico } from 'src/app/model/operadorLogistico.model';
+import { Pacote } from 'src/app/model/pacote.model';
 import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
-import { PacoteService } from 'src/app/service/pacote.service';
 
 @Component({
   selector: 'app-cadastrar-encomenda',
@@ -15,6 +15,7 @@ export class CadastrarEncomendaComponent implements OnInit {
 
   trasportadoras$?: Observable<OperadorLogistico[]>
   formAdicionarEncomenda: FormGroup
+  pacote?: Pacote
 
   constructor(
     private fb: FormBuilder, 
@@ -23,6 +24,8 @@ export class CadastrarEncomendaComponent implements OnInit {
   ){
     this.formAdicionarEncomenda = this.createForm(this.fb)
     dialog.disableClose = true;
+
+    this.formAdicionarEncomenda.controls['idOperadorLogistico']
   }
 
   ngOnInit(): void {
@@ -36,19 +39,19 @@ export class CadastrarEncomendaComponent implements OnInit {
     })
   }
 
-  create(){
+  salvar(){
     const c = {
       idOperadorLogistico: this.formAdicionarEncomenda.controls['idOperadorLogistico'].value,
       codigoOperadorLogistico: this.formAdicionarEncomenda.controls['codigoOperadorLogistico'].value,
     }
 
     if(c.idOperadorLogistico && c.codigoOperadorLogistico){
-      //new PacoteService().createPackage(c)
-      this.close()
-    }
-  }
+      this.pacote = new Pacote()
+      this.pacote.operadorLogistico = new OperadorLogistico()
+      this.pacote.codigoOperadorLogistica = this.formAdicionarEncomenda.controls['codigoOperadorLogistico'].value
+      this.pacote.operadorLogistico.id = this.formAdicionarEncomenda.controls['idOperadorLogistico'].value
 
-  close(){
-    this.dialog.close()
+      this.dialog.close()
+    }
   }
 }

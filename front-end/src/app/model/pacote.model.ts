@@ -1,7 +1,7 @@
-import { Entidade } from "./Entidade";
-import { Etiqueta } from "./Etiqueta";
-import { OperadorLogistico } from "./OperadorLogistico";
-import { RegistroMovimentacao } from "./RegistroMovimentacao";
+import { Entidade } from "./entidade.model";
+import { Etiqueta } from "./etiqueta.model";
+import { OperadorLogistico } from "./operadorLogistico.model";
+import { RegistroMovimentacao } from "./registroMovimentacao.model";
 
 export class Pacote extends Entidade {
     dataPostagem?: Date

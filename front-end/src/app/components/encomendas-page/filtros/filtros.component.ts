@@ -2,12 +2,13 @@ import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { Etiqueta } from 'src/app/model/Etiqueta';
-import { OperadorLogistico } from 'src/app/model/OperadorLogistico';
-import { TipoFiltro } from 'src/app/pages/encomendas/Filtro';
+import { Etiqueta } from 'src/app/model/etiqueta.model';
+import { OperadorLogistico } from 'src/app/model/operadorLogistico.model';
+import { TipoFiltro } from 'src/app/model/filtro.model';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
 import { OperadorLogisticoService } from 'src/app/service/operador-logistico.service';
-import { ConfiguracaoComponent } from '../configuracao/configuracao.component';
+import { ConfiguracaoComponent } from '../../configuracao/configuracao.component';
+
 
 @Component({
   selector: 'app-filtros',

@@ -1,8 +1,8 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, catchError, finalize, map, Observable, of } from 'rxjs';
 import { CustonTable } from 'src/app/interfaces/CustonTable';
-import { Pacote } from 'src/app/model/Pacote';
-import { Filtro } from 'src/app/pages/encomendas/Filtro';
+import { Pacote } from 'src/app/model/pacote.model';
+import { Filtro } from 'src/app/model/filtro.model';
 import { PacoteService } from 'src/app/service/pacote.service';
 
 export class ControladorTabela extends DataSource<CustonTable> {
@@ -55,8 +55,7 @@ export class ControladorTabela extends DataSource<CustonTable> {
 	}
 
 	buscaCustom(filtros: Filtro[]){
-		console.log("Filtros: ")
-		console.log(filtros)
+		this.pacoteService.getPorFiltro(filtros)
 	}
 
 	idPacotesSelecionados(): String[]{

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Etiqueta } from 'src/app/model/Etiqueta';
+import { Etiqueta } from 'src/app/model/etiqueta.model';
 
 @Component({
   selector: 'app-descreve-etiquetas',

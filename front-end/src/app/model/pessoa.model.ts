@@ -1,5 +1,5 @@
-import { Entidade } from "./Entidade"
-import { Pacote } from "./Pacote"
+import { Entidade } from "./entidade.model"
+import { Pacote } from "./pacote.model"
 
 export abstract class Pessoa extends Entidade {
     nome: String

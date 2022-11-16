@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OperadorLogistico } from '../model/OperadorLogistico';
+import { OperadorLogistico } from '../model/operadorLogistico.model';
+import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OperadorLogisticoService {
+export class OperadorLogisticoService  extends GenericService<OperadorLogistico>{
 
-  constructor(private http: HttpClient) {}
-
-  getTodos(){
-    return this.http.get<OperadorLogistico[]>('http://localhost:3001/angular/operadorLogistico/getTodos')
+  constructor(http: HttpClient) {
+    super(http, "operadorLogistico")
   }
 }

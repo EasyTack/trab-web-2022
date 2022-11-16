@@ -87,6 +87,33 @@
       ],
       "enabled": true,
       "responseMode": null
+    },
+    {
+      "uuid": "49b41ad8-4d42-42fb-95de-7962747157a1",
+      "documentation": "criar pacote",
+      "method": "post",
+      "endpoint": "pacote/salvar",
+      "responses": [
+        {
+          "uuid": "0c9fcdd7-d961-41e7-987a-1060fa4df75d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "proxyMode": false,

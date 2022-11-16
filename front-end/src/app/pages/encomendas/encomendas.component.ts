@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AdicionarEtiquetaComponent } from 'src/app/components/adicionar-etiqueta/adicionar-etiqueta.component';
-import { CadastrarEncomendaComponent } from 'src/app/components/cadastrar-encomenda/cadastrar-encomenda.component';
-import { CriarEtiquetaComponent } from 'src/app/components/criar-etiqueta/criar-etiqueta.component';
-import { FiltrosComponent } from 'src/app/components/filtros/filtros.component';
-import { ControladorTabela } from 'src/app/components/tabela-encomendas/ControladorTabela';
+import { AdicionarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/adicionar-etiqueta/adicionar-etiqueta.component';
+import { CadastrarEncomendaComponent } from 'src/app/components/encomendas-page/encomendas/cadastrar-encomenda/cadastrar-encomenda.component';
+import { CriarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/criar-etiqueta/criar-etiqueta.component';
+import { FiltrosComponent } from 'src/app/components/encomendas-page/filtros/filtros.component';
+import { ControladorTabela } from 'src/app/components/encomendas-page/tabela/tabela-encomendas/ControladorTabela';
 import { PacoteService } from 'src/app/service/pacote.service';
-import { Filtro, TipoFiltro } from './Filtro';
+import { Filtro, TipoFiltro } from '../../model/filtro.model';
 
 @Component({
   selector: 'app-encomendas',
@@ -34,20 +34,18 @@ export class EncomendasComponent implements OnInit {
     //this.dialogAdicionarEtiqueta()
   }
 
-
   dialogAdicionarEncomenda(){
     const dialogRef = this.dialog.open(CadastrarEncomendaComponent);
     
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      const data = dialogRef.componentInstance.pacote
+      if(data) this.pacoteService.salvar(data)
     });
   }
 
   removerEncomenda(){
-    console.log("Considerações a serem feitas")
-
     if(this.listaPacotes$.idPacotesSelecionados().length > 0)
-      console.log(`Excluir encomendas: ${this.listaPacotes$.idPacotesSelecionados()}`)
+      this.pacoteService.deletarGrupo(this.listaPacotes$.idPacotesSelecionados())
   }
 
   dialogCriarEtiqueta(){

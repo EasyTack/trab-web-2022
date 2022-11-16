@@ -24,12 +24,12 @@
 
     <ng-container matColumnDef="dataPostagem">
         <th mat-header-cell *matHeaderCellDef>Data de Postagem</th>
-        <td mat-cell *matCellDef="let element"> {{formatarData(element.pacote.dataPostagem)}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.pacote.dataPostagem | date:"dd/MM/yyyy"}} </td>
     </ng-container>
 
     <ng-container matColumnDef="dataEntrega">
         <th mat-header-cell *matHeaderCellDef>Data de Entrega</th>
-        <td mat-cell *matCellDef="let element"> {{formatarData(element.pacote.dataEntrega)}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.pacote.dataEntrega | date:"dd/MM/yyyy"}} </td>
     </ng-container>
 
     <ng-container matColumnDef="origem">

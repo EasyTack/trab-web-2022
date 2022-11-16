@@ -1,4 +1,4 @@
-import { Etiqueta } from "../model/Etiqueta";
+import { Etiqueta } from "../model/etiqueta.model";
 
 export class dataTag {
     /*dados: Etiqueta[] = []

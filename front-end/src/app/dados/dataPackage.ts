@@ -1,5 +1,5 @@
-import { Etiqueta } from "../model/Etiqueta";
-import { Pacote } from "../model/Pacote";
+import { Etiqueta } from "../model/etiqueta.model";
+import { Pacote } from "../model/pacote.model";
 import { dataTag } from "./dataTag";
 
 export class dataPackage {

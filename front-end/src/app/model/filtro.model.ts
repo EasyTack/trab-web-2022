@@ -1,5 +1,5 @@
-import { Etiqueta } from "src/app/model/Etiqueta"
-import { OperadorLogistico } from "src/app/model/OperadorLogistico"
+import { Etiqueta } from "src/app/model/etiqueta.model"
+import { OperadorLogistico } from "src/app/model/operadorLogistico.model"
 
 export enum TipoFiltro {
     Codigo,

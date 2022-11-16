@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Etiqueta } from 'src/app/model/Etiqueta';
+import { Etiqueta } from 'src/app/model/etiqueta.model';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
 
 @Component({

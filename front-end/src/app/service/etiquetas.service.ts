@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Etiqueta } from '../model/Etiqueta';
+import { Etiqueta } from '../model/etiqueta.model';
+import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EtiquetasService {
+export class EtiquetasService extends GenericService<Etiqueta>{
 
-  constructor(private http: HttpClient) { }
-
-  createTag(data: any){
-    console.log(data)
-  }
-
-  getTodos(){
-    return this.http.get<Etiqueta[]>('http://localhost:3001/angular/etiqueta/getTodos')
+  constructor(http: HttpClient) { 
+    super(http, "etiqueta")
   }
 }

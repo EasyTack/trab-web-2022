@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Configuracao } from 'src/app/model/Configuracao';
+import { Configuracao } from 'src/app/model/configuracao.model';
 import { ConfiguracaoService } from 'src/app/service/configuracao.service';
 
 @Component({
@@ -15,7 +15,11 @@ export class ConfiguracaoComponent implements OnInit {
 
   labelIntervaloAtualizacao;
 
-  constructor(private fb: FormBuilder, private dialog: MatDialogRef <ConfiguracaoComponent>){
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialogRef <ConfiguracaoComponent>,
+    private configuracaoService: ConfiguracaoService
+  ){
     this.formConfig = this.createForm(this.fb)
     dialog.disableClose = true;
     this.labelIntervaloAtualizacao = this.formConfig.controls['intervaloAtualizacao'].value
@@ -44,7 +48,7 @@ export class ConfiguracaoComponent implements OnInit {
     configuracao.intervaloAtualizacao = this.formConfig.controls['intervaloAtualizacao'].value
     configuracao.tipoOrdenacaoPadrao = this.formConfig.controls['tipoOrdenacaoPadrao'].value
 
-    new ConfiguracaoService().salvar(configuracao)
+    this.configuracaoService.salvar(configuracao)
   }
 
   closeDialog(){

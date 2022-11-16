@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Usuario } from 'src/app/model/Usuario'
+import { Usuario } from 'src/app/model/usuario.model'
 import { UsuarioService } from 'src/app/service/usuario.service'
 
 @Component({
@@ -16,7 +16,10 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService
+  ) {
     this.formLogin = this.createForm(this.fb)
   }
 
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit {
     usuario.usuario = this.formLogin.controls['usuario'].value
     usuario.senha = this.formLogin.controls['senha'].value
 
-    const result = new UsuarioService().login(usuario)
+    const result = this.usuarioService.login(usuario)
 
     if(usuario.usuario != '' && usuario.senha != ''){
       this.waitingData = true
@@ -57,7 +60,7 @@ export class LoginComponent implements OnInit {
     let usuario = new Usuario()
     usuario.usuario = this.formLogin.controls['usuario'].value
 
-    new UsuarioService().recuperarSenha(usuario)
+    this.usuarioService.recuperarSenha(usuario)
 
     //this.formLogin.reset()
   }

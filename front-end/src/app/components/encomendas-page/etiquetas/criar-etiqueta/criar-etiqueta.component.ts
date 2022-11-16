@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ConfiguracaoComponent } from '../configuracao/configuracao.component';
+import { ConfiguracaoComponent } from 'src/app/components/configuracao/configuracao.component';
 
 @Component({
   selector: 'app-criar-etiqueta',

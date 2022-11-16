@@ -1,4 +1,4 @@
-import { Pacote } from "../model/Pacote";
+import { Pacote } from "../model/pacote.model";
 
 export interface CustonTable {
     pacote: Pacote,

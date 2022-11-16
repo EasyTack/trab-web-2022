@@ -1,4 +1,4 @@
-import { Entidade } from "./Entidade";
+import { Entidade } from "./entidade.model";
 
 export class Etiqueta extends Entidade {
     nome: String

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Etiqueta } from 'src/app/model/Etiqueta';
+import { Etiqueta } from 'src/app/model/etiqueta.model';
 import { DescreveEtiquetasComponent } from '../descreve-etiquetas/descreve-etiquetas.component';
 import { PacoteService } from 'src/app/service/pacote.service';
 
@@ -22,17 +22,4 @@ export class TabelaEncomendasComponent implements OnInit {
   dialogDescreveEtiquetas(etiquetas: Etiqueta[]){
     if(etiquetas.length > 0 ) this.dialog.open(DescreveEtiquetasComponent, {data: etiquetas})
   }
-
-  formatarData(data: Date): String{
-    if(data){
-      let dia  = data.getDate().toString(),
-      diaF = (dia.length == 1) ? '0'+dia : dia,
-      mes  = (data.getMonth()+1).toString(),
-      mesF = (mes.length == 1) ? '0'+mes : mes,
-      anoF = data.getFullYear();
-      return diaF+"/"+mesF+"/"+anoF;
-    }
-
-    return ''
-  } 
 }

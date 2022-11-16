@@ -1,4 +1,4 @@
-import { OperadorLogistico } from "../model/OperadorLogistico"
+import { OperadorLogistico } from "../model/operadorLogistico.model"
 
 export class dataLogisticOperator {
     /*dados: OperadorLogistico[] = []

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario.model';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -15,7 +15,10 @@ export class CadastroUsuarioComponent implements OnInit {
 
   formCadastro: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService
+  ) {
     this.formCadastro = this.createForm(this.fb)
   }
 
@@ -55,7 +58,7 @@ export class CadastroUsuarioComponent implements OnInit {
     let confirmarSenha = this.formCadastro.controls['confirmarSenha'].value
 
     if(usuario.usuario && usuario.nome && usuario.sobrenome && usuario.senha && usuario.senha && confirmarSenha && usuario.cpf){
-      new UsuarioService().cadastrar(usuario)
+      this.usuarioService.cadastrar(usuario)
     }
 
     //this.formCadastro.reset()

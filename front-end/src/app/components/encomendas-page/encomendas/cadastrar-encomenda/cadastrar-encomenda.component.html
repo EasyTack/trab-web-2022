@@ -15,6 +15,6 @@
     </mat-form-field>
   </form>
 
-  <button mat-raised-button (click)="close()" class="btn-dialog-position-cancel highlight-button-white">Cancelar</button>
-  <button mat-raised-button (click)="create()" class="btn-dialog-position-ok highlight-button-white">Adicionar</button>
+  <button mat-raised-button mat-dialog-close class="btn-dialog-position-cancel highlight-button-white">Cancelar</button>
+  <button mat-raised-button (click)="salvar()" class="btn-dialog-position-ok highlight-button-white">Adicionar</button>
 </div>
