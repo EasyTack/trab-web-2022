@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/model/usuario.model';
+import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuarioService extends GenericService<Usuario>{
 
-  url = "http://localhost:3001/angular"
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, "usuario")
+  }
 
   login(usuario: Usuario): Boolean{
     console.log("login:")
@@ -22,14 +23,4 @@ export class UsuarioService {
     console.log(usuario)
     return true
   }
-
-  cadastrar(usuario: Usuario){
-    console.log("cadastrar novo usuário:")
-    console.log(usuario)
-    return true
-  }
-
-  atualizar(usuario: Usuario){ }
-
-  deletar(usuario: Usuario){ }
 }

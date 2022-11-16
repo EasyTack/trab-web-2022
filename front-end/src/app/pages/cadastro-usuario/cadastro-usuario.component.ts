@@ -58,7 +58,7 @@ export class CadastroUsuarioComponent implements OnInit {
     let confirmarSenha = this.formCadastro.controls['confirmarSenha'].value
 
     if(usuario.usuario && usuario.nome && usuario.sobrenome && usuario.senha && usuario.senha && confirmarSenha && usuario.cpf){
-      this.usuarioService.cadastrar(usuario)
+      this.usuarioService.salvar(usuario)
     }
 
     //this.formCadastro.reset()

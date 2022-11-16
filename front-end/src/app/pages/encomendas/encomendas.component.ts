@@ -58,6 +58,10 @@ export class EncomendasComponent implements OnInit {
     )
   }
 
+  dialogEditarEtiqueta(){
+    console.log("Criar editar etiqueta")
+  }
+
   dialogAdicionarEtiqueta(){
     const dialogRef = this.dialog.open(AdicionarEtiquetaComponent)
 
