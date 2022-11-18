@@ -21,6 +21,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CriarEtiquetaComponent } from './components/encomendas-page/etiquetas/criar-etiqueta/criar-etiqueta.component';
 import { DescreveEtiquetasComponent } from './components/encomendas-page/tabela/descreve-etiquetas/descreve-etiquetas.component';
 import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquetas/adicionar-etiqueta/adicionar-etiqueta.component';
+import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/registro-movimentacao.component'
+
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquet
     FiltrosComponent,
     CriarEtiquetaComponent,
     DescreveEtiquetasComponent,
-    AdicionarEtiquetaComponent
+    AdicionarEtiquetaComponent,
+    RegistroMovimentacaoComponent
     ],
   imports: [
     BrowserModule,

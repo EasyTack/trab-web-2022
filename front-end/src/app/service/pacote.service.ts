@@ -17,8 +17,7 @@ export class PacoteService extends GenericService<Pacote>{
   }
 
   deletarGrupo(idPacotes: String[]){
-    console.log(idPacotes)
-    //return this.http.delete<String[]>(`${this.url}/pacote/grupo`, idPacotes)
+    return this.http.post<String[]>(`${this.url}/pacote/grupo`, idPacotes)
   }
 
   /*getTodos(): Observable<Pacote[]>{
@@ -32,8 +31,6 @@ export class PacoteService extends GenericService<Pacote>{
   }*/
 
   getPorFiltro(filtros: Filtro[]): Observable<Pacote[]>{
-    console.log(filtros)
-    return this.http.get<Pacote[]>(`${this.url}/pacote/getTodos`)
-    //return this.http.get<Pacote[]>(`${this.url}/pacote/getPorFiltro`, filtros)
+    return this.http.post<Pacote[]>(`${this.url}/pacote/getTodos`, filtros)
   }
 }

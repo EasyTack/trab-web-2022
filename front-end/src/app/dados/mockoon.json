@@ -89,10 +89,81 @@
       "responseMode": null
     },
     {
+      "uuid": "03fadc9e-f050-4475-9053-9de7d09a30a1",
+      "documentation": "obter pacote por id",
+      "method": "get",
+      "endpoint": "pacote/:id",
+      "responses": [
+        {
+          "uuid": "091c6044-df4d-4160-88cb-33e07c6c2ecc",
+          "body": "{\n\t\t\"id\": 2416,\n\t\t\"codigoOperadorLogistica\": \"90B615A6-AC59-135A-1E73-D8003242D1A1\",\n\t\t\"dataPostagem\": \"Apr 6, 2022\",\n\t\t\"dataEntrega\": \"Oct 17, 2021\",\n\t\t\"localOrigem\": \"Newton\",\n\t\t\"localDestino\": \"Saint-Sébastien-sur-Loire\",\n\t\t\"status\": \"Entregue\",\n\t\t\"etiquetas\": []\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "2935417f-219d-4179-888c-93aa971cbdab",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f00bb66a-2d08-4056-85bc-ad0dbdad0bdb",
+      "documentation": "obtendo registro de movimentações",
+      "method": "get",
+      "endpoint": "registroMovimentacao/porIdPacote",
+      "responses": [
+        {
+          "uuid": "59e99d05-47d9-40b4-8fe9-d9f394e724eb",
+          "body": "[{\"id\":1,\"dataMovimentacao\":\"8/10/2022\",\"localOrigem\":\"Jardim\",\"localDestino\":\"Almafuerte\",\"status\":\"Brazil\"},\n{\"id\":2,\"dataMovimentacao\":\"6/12/2022\",\"localOrigem\":\"Haolaishan\",\"localDestino\":\"Żabnica\",\"status\":\"China\"},\n{\"id\":3,\"dataMovimentacao\":\"11/10/2022\",\"localOrigem\":\"Independencia\",\"localDestino\":\"Tehetu\",\"status\":\"Mexico\"},\n{\"id\":4,\"dataMovimentacao\":\"12/4/2021\",\"localOrigem\":\"Khotiv\",\"localDestino\":\"Talodi\",\"status\":\"Ukraine\"},\n{\"id\":5,\"dataMovimentacao\":\"3/23/2022\",\"localOrigem\":\"Port Erin\",\"localDestino\":\"Nanggorak\",\"status\":\"Isle of Man\"},\n{\"id\":6,\"dataMovimentacao\":\"3/3/2022\",\"localOrigem\":\"Chaiyo\",\"localDestino\":\"Songhu\",\"status\":\"Thailand\"},\n{\"id\":7,\"dataMovimentacao\":\"5/5/2022\",\"localOrigem\":\"Gaotian\",\"localDestino\":\"Wang Sam Mo\",\"status\":\"China\"},\n{\"id\":8,\"dataMovimentacao\":\"4/11/2022\",\"localOrigem\":\"Tabango\",\"localDestino\":\"Nancun\",\"status\":\"Philippines\"},\n{\"id\":9,\"dataMovimentacao\":\"2/7/2022\",\"localOrigem\":\"Chimboy Shahri\",\"localDestino\":\"Ananindeua\",\"status\":\"Uzbekistan\"},\n{\"id\":10,\"dataMovimentacao\":\"12/30/2021\",\"localOrigem\":\"Kufa\",\"localDestino\":\"Menzel Abderhaman\",\"status\":\"Iraq\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
       "uuid": "49b41ad8-4d42-42fb-95de-7962747157a1",
       "documentation": "criar pacote",
       "method": "post",
-      "endpoint": "pacote/salvar",
+      "endpoint": "pacote/salvar?nome&:cor",
       "responses": [
         {
           "uuid": "0c9fcdd7-d961-41e7-987a-1060fa4df75d",

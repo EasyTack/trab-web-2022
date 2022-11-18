@@ -7,31 +7,29 @@ import { Observable } from 'rxjs';
 })
 export abstract class GenericService<T> {
 
-  url = "http://localhost:3001/angular"
+  _url_ = "http://localhost:3001/angular"
 
-  constructor(protected http: HttpClient, protected url2: String) {}
+  constructor(protected http: HttpClient, protected url: String) {}
 
   salvar(t: T){
     console.log(t)
-    return this.http.post<T>(`${this.url}/${this.url2}/salvar`, t)
+    return this.http.post<T>(`${this._url_}/${this.url}/salvar`, t)
   }
 
   atualizar(t: T){
     console.log(t)
-    return this.http.put<T>(`${this.url}/${this.url2}`, t)
+    return this.http.put<T>(`${this._url_}/${this.url}`, t)
   }
 
   deletar(id: String){
-    console.log(id)
-    //return this.http.delete<String>(`${this.url}/${this.url2}`, id)
+    return this.http.delete<String>(`${this._url_}/${this.url}/${id}`)
   }
 
   getId(id: String){
-    console.log(id)
-    //return this.http.get<T>(`${this.url}/${this.url2}`, id)
+    return this.http.get<T>(`${this._url_}/${this.url}/id=${id}`)
   }
 
   getTodos(): Observable<T[]>{
-    return this.http.get<T[]>(`${this.url}/${this.url2}/getTodos`)
+    return this.http.get<T[]>(`${this._url_}/${this.url}/getTodos`)
   }
 }

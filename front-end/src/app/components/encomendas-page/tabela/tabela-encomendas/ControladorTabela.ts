@@ -42,6 +42,20 @@ export class ControladorTabela extends DataSource<CustonTable> {
 
 		this.pacoteService.getTodos().pipe(map((pacotes: Pacote[]) => {
 			return pacotes.map((pacote: Pacote) => {
+				return {
+					pacote: pacote,
+					select: false
+				}
+			})  
+		}),
+			catchError(()=> of([])),
+			finalize(() => this.carregandoPacoteSubject.next(false))
+		).subscribe((ctList: CustonTable[]) => this.pacotesSubject.next(ctList))
+	}
+
+	buscaCustom(filtros: Filtro[]){
+		this.pacoteService.getPorFiltro(filtros).pipe(map((pacotes: Pacote[]) => {
+			return pacotes.map((pacote: Pacote) => {
 				let p: CustonTable = {
 					pacote: pacote,
 					select: false
@@ -52,10 +66,6 @@ export class ControladorTabela extends DataSource<CustonTable> {
 			catchError(()=> of([])),
 			finalize(() => this.carregandoPacoteSubject.next(false))
 		).subscribe(p => this.pacotesSubject.next(p))
-	}
-
-	buscaCustom(filtros: Filtro[]){
-		this.pacoteService.getPorFiltro(filtros)
 	}
 
 	idPacotesSelecionados(): String[]{
@@ -96,6 +106,7 @@ export class ControladorTabela extends DataSource<CustonTable> {
 
 	checkboxTodosClicado(state: boolean){
 		this.todosSeleciondos = state
+		this.algunsSelecionados = false
 
 		this.pacotesSubject.asObservable().subscribe((custonTable: CustonTable[]) => {
 			custonTable.forEach(((ct: CustonTable) => {
