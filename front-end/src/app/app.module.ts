@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from 'src/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
@@ -23,6 +24,9 @@ import { DescreveEtiquetasComponent } from './components/encomendas-page/tabela/
 import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquetas/adicionar-etiqueta/adicionar-etiqueta.component';
 import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/registro-movimentacao.component'
 
+/*const maskConfig: Partial<IConfig> = {
+  validation: false,
+};*/
 
 
 @NgModule({
@@ -49,7 +53,11 @@ import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/reg
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false,
+      validation: true
+  }),
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-br'}
