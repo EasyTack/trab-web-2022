@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pacote } from 'src/app/model/pacote.model';
 import { RegistroMovimentacao } from 'src/app/model/registroMovimentacao.model';
 import { RegistroMovimentacaoService } from 'src/app/service/registroMovimentacao';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PacoteService } from 'src/app/service/pacote.service';
 
 @Component({

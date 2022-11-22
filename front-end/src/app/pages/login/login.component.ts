@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   hide_senha = true
   recover_password = false
-  waitingData = false
+  buscandoUsuario = false
 
   formLogin: FormGroup
 
@@ -38,20 +38,14 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(){
-    let usuario = new Usuario()
-    usuario.usuario = this.formLogin.controls['usuario'].value
-    usuario.senha = this.formLogin.controls['senha'].value
+    const usuario = this.formLogin.controls['usuario'].value
+    const senha = this.formLogin.controls['senha'].value
 
-    const result = this.usuarioService.login(usuario)
-
-    if(usuario.usuario != '' && usuario.senha != ''){
-      this.waitingData = true
-      setTimeout(()=>{
-        this.waitingData = false
-        this.formLogin.controls['usuario'].setErrors({userIncorrect: true})
-        this.formLogin.controls['senha'].setErrors({passwordIncorrect: true})
-      },5000)
-    }
+    this.buscandoUsuario = true
+    this.usuarioService.login(usuario, senha).subscribe((usr: Usuario) => {
+      console.log(usr)
+      this.buscandoUsuario = false
+    })
 
     //this.formLogin.reset()
   }

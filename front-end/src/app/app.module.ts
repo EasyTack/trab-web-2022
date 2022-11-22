@@ -21,13 +21,10 @@ import { FiltrosComponent } from './components/encomendas-page/filtros/filtros.c
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CriarEtiquetaComponent } from './components/encomendas-page/etiquetas/criar-etiqueta/criar-etiqueta.component';
 import { DescreveEtiquetasComponent } from './components/encomendas-page/tabela/descreve-etiquetas/descreve-etiquetas.component';
-import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquetas/adicionar-etiqueta/adicionar-etiqueta.component';
-import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/registro-movimentacao.component'
-
-/*const maskConfig: Partial<IConfig> = {
-  validation: false,
-};*/
-
+import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquetas/adicionar-remover-etiqueta/adicionar-remover-etiqueta.component';
+import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/registro-movimentacao.component';
+import { EditarEtiquetaComponent } from './components/encomendas-page/etiquetas/editar-etiqueta/editar-etiqueta.component';
+import { SelectEtiquetaComponent } from './components/form/select-etiqueta/select-etiqueta.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +41,9 @@ import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/reg
     CriarEtiquetaComponent,
     DescreveEtiquetasComponent,
     AdicionarEtiquetaComponent,
-    RegistroMovimentacaoComponent
+    RegistroMovimentacaoComponent,
+    EditarEtiquetaComponent,
+    SelectEtiquetaComponent
     ],
   imports: [
     BrowserModule,

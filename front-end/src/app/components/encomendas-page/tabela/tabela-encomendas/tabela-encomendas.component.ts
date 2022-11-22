@@ -2,8 +2,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Etiqueta } from 'src/app/model/etiqueta.model';
 import { DescreveEtiquetasComponent } from '../descreve-etiquetas/descreve-etiquetas.component';
-import { PacoteService } from 'src/app/service/pacote.service';
-import { Pacote } from 'src/app/model/pacote.model';
 
 @Component({
   selector: 'app-tabela-encomendas',
@@ -16,8 +14,7 @@ export class TabelaEncomendasComponent implements OnInit {
   displayed: String[] = ["select", "codigoOperadorLogistica", "status", "dataPostagem", "dataEntrega", "origem", "destino", "etiqueta"]
 
   constructor(
-    private dialog: MatDialog, 
-    private pacoteService: PacoteService
+    private dialog: MatDialog
   ) {
   }
 

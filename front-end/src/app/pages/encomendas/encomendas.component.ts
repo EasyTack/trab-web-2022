@@ -1,12 +1,15 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AdicionarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/adicionar-etiqueta/adicionar-etiqueta.component';
+import { AdicionarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/adicionar-remover-etiqueta/adicionar-remover-etiqueta.component';
 import { CadastrarEncomendaComponent } from 'src/app/components/encomendas-page/encomendas/cadastrar-encomenda/cadastrar-encomenda.component';
 import { CriarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/criar-etiqueta/criar-etiqueta.component';
 import { FiltrosComponent } from 'src/app/components/encomendas-page/filtros/filtros.component';
 import { ControladorTabela } from 'src/app/components/encomendas-page/tabela/tabela-encomendas/ControladorTabela';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { Filtro, TipoFiltro } from '../../model/filtro.model';
+import { EtiquetasService } from 'src/app/service/etiquetas.service';
+import { Etiqueta } from 'src/app/model/etiqueta.model';
+import { EditarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/editar-etiqueta/editar-etiqueta.component';
 
 @Component({
   selector: 'app-encomendas',
@@ -20,18 +23,13 @@ export class EncomendasComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private pacoteService: PacoteService
+    private pacoteService: PacoteService,
+    private etiquetasService: EtiquetasService
   ) {
   }
 
   ngOnInit(): void {
     this.listaPacotes$?.buscaTodos()
-
-    //this.dialogAdicionar()
-    //this.dialogFiltrar()
-    //this.dialogCriarEtiqueta()
-    //this.dialogFiltrarEtiqueta()
-    //this.dialogAdicionarEtiqueta()
   }
 
   dialogAdicionarEncomenda(){
@@ -49,34 +47,66 @@ export class EncomendasComponent implements OnInit {
   }
 
   dialogCriarEtiqueta(){
-    const dialogRef = this.dialog.open(CriarEtiquetaComponent)
+    const idSelecionado = this.listaPacotes$.idPacotesSelecionados()
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result?.nome && result?.cor && (this.listaPacotes$.idPacotesSelecionados().length > 0))
-        console.log(`Criar etiqueta: ${result.nome}, ID(s):  ${this.listaPacotes$.idPacotesSelecionados()}`)
-      }
-    )
+    if(idSelecionado.length > 0){
+      const dialogRef = this.dialog.open(CriarEtiquetaComponent)
+
+      dialogRef.afterClosed().subscribe(result => {
+        const { nome, cor } = result
+
+        if(nome && cor)
+          this.etiquetasService.criarEAssociarPacote(new Etiqueta(result?.nome, result?.cor), idSelecionado)
+        }
+      )
+    }
   }
 
   dialogEditarEtiqueta(){
-    console.log("Criar editar etiqueta")
-  }
-
-  dialogAdicionarEtiqueta(){
-    const dialogRef = this.dialog.open(AdicionarEtiquetaComponent)
+    const dialogRef = this.dialog.open(EditarEtiquetaComponent)
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        console.log(`Adicionar etiqueta: ${result.nome} ID(s): ${this.listaPacotes$.idPacotesSelecionados()}`)
+      const { nome, cor } = result
+      let { etiqueta } = result
+
+      if(nome && cor && etiqueta){
+        etiqueta.nome = nome
+        etiqueta.cor = cor
+        this.etiquetasService.atualizar(etiqueta)
       }
     })
   }
 
-  removerEtiqueta(){
-    console.log("Considerações a serem feitas")
+  dialogAdicionarEtiqueta(){
+    const idSelecionado = this.listaPacotes$.idPacotesSelecionados()
 
-    if(this.listaPacotes$.idPacotesSelecionados().length > 0)
-      console.log(`Remover etiquetas: ${this.listaPacotes$.idPacotesSelecionados()}`)
+    if(idSelecionado.length > 0){
+      const dialogRef = this.dialog.open(AdicionarEtiquetaComponent)
+
+      dialogRef.afterClosed().subscribe(result => {
+        const { id } = result
+
+        if(id){
+          this.pacoteService.adicionarEtiqueta(id, idSelecionado)
+        }
+      })
+    }
+  }
+
+  removerEtiqueta(){
+    const idSelecionado = this.listaPacotes$.idPacotesSelecionados()
+
+    if(idSelecionado.length > 0){
+      const dialogRef = this.dialog.open(AdicionarEtiquetaComponent, {data: {idPacotes: idSelecionado}})
+
+      dialogRef.afterClosed().subscribe(result => {
+        const { id } = result
+
+        if(id){
+          this.pacoteService.removerEtiqueta(id, idSelecionado)
+        }
+      })
+    }
   }
 
   dialogFiltrarCodigo(){

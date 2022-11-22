@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Configuracao } from '../model/configuracao.model';
 import { GenericService } from './generic.service';
 import { RegistroMovimentacao } from '../model/registroMovimentacao.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class RegistroMovimentacaoService extends GenericService<Configuracao> {
     super(http, "registroMovimentacao")
   }
 
-  getPorIdPacote(idPacote: String){
+  getPorIdPacote(idPacote: String): Observable<RegistroMovimentacao[]>{
     return this.http.get<RegistroMovimentacao[]>(`${this._url_}/${this.url}/porIdPacote?id=${idPacote}`)
   }
 }

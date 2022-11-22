@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cadusr', component: CadastroUsuarioComponent},
+  {path: 'cadusr?id', component: CadastroUsuarioComponent},
   {path: 'encomendas', component: EncomendasComponent},
   {path: 'transp', component: TransportadorasComponent},
   {path: 'mov', component: RegistroMovimentacaoComponent}

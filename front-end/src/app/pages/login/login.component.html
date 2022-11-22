@@ -2,7 +2,7 @@
     <form [formGroup]="formLogin" *ngIf="!recover_password" class="form-center  card-white">
         <h1 class="title">Login</h1>
 
-        <mat-progress-bar mode="indeterminate" *ngIf="waitingData"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate" *ngIf="buscandoUsuario"></mat-progress-bar>
 
         <mat-form-field appearance="outline" class="input-content">
             <mat-label>Usuario</mat-label>

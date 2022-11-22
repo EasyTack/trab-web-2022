@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario.model';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -17,12 +18,27 @@ export class CadastroUsuarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private usuarioService: UsuarioService
   ) {
     this.formCadastro = this.createForm(this.fb)
   }
 
   ngOnInit(): void {
+    //this.carregandoLista = true
+    this.route.queryParams.subscribe(params => {
+      let id = params['id']
+
+      if(id){
+        this.usuarioService.getId(id).subscribe((usr: Usuario) => {
+          this.formCadastro.controls['usuario'].setValue(usr.usuario)
+          this.formCadastro.controls['cpf'].setValue(usr.cpf)
+          this.formCadastro.controls['nome'].setValue(usr.nome)
+          this.formCadastro.controls['sobrenome'].setValue(usr.sobrenome)
+          //this.carregandoLista = false
+        })
+      }
+    })
   }
 
   createForm(fb: FormBuilder){

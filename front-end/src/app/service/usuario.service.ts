@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/model/usuario.model';
 import { GenericService } from './generic.service';
 
@@ -12,10 +13,8 @@ export class UsuarioService extends GenericService<Usuario>{
     super(http, "usuario")
   }
 
-  login(usuario: Usuario): Boolean{
-    console.log("login:")
-    console.log(usuario)
-    return true
+  login(nome: String, senha: String): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this._url_}/${this.url}/${nome}/${senha}`)
   }
 
   recuperarSenha(usuario: Usuario){

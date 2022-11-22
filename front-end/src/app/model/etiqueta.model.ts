@@ -4,7 +4,7 @@ export class Etiqueta extends Entidade {
     nome: String
     cor: String
 
-    constructor(nome: String = "", cor: String = "", codigo: String = ""){
+    constructor(nome: String = "", cor: String = ""){
         super()
         this.nome = nome
         this.cor = cor
