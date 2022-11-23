@@ -10,6 +10,8 @@ import { Filtro, TipoFiltro } from '../../model/filtro.model';
 import { EtiquetasService } from 'src/app/service/etiquetas.service';
 import { Etiqueta } from 'src/app/model/etiqueta.model';
 import { EditarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/editar-etiqueta/editar-etiqueta.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { InfoSnackbarComponent } from 'src/app/components/alertas/info-snackbar/info-snackbar.component';
 
 @Component({
   selector: 'app-encomendas',
@@ -24,7 +26,8 @@ export class EncomendasComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private pacoteService: PacoteService,
-    private etiquetasService: EtiquetasService
+    private etiquetasService: EtiquetasService,
+    private mensagem: MatSnackBar
   ) {
   }
 
@@ -37,13 +40,21 @@ export class EncomendasComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result => {
       const data = dialogRef.componentInstance.pacote
+      
       if(data) this.pacoteService.salvar(data)
     });
   }
 
   removerEncomenda(){
-    if(this.listaPacotes$.idPacotesSelecionados().length > 0)
+    if(this.listaPacotes$.idPacotesSelecionados().length > 0){
       this.pacoteService.deletarGrupo(this.listaPacotes$.idPacotesSelecionados())
+    
+    } else {
+      this.mensagem.openFromComponent(InfoSnackbarComponent, {
+        data: {msg: "É necessário selecionar alguma encomenda."},
+        duration: 3000
+      })
+    }
   }
 
   dialogCriarEtiqueta(){
@@ -56,9 +67,15 @@ export class EncomendasComponent implements OnInit {
         const { nome, cor } = result
 
         if(nome && cor)
-          this.etiquetasService.criarEAssociarPacote(new Etiqueta(result?.nome, result?.cor), idSelecionado)
+          this.etiquetasService.criarEAssociarPacote(new Etiqueta(nome, cor), idSelecionado)
         }
       )
+    
+    } else {
+      this.mensagem.openFromComponent(InfoSnackbarComponent, {
+        data: {msg: "É necessário selecionar alguma encomenda."},
+        duration: 3000
+      })
     }
   }
 
@@ -90,6 +107,12 @@ export class EncomendasComponent implements OnInit {
           this.pacoteService.adicionarEtiqueta(id, idSelecionado)
         }
       })
+    
+    } else {
+      this.mensagem.openFromComponent(InfoSnackbarComponent, {
+        data: {msg: "É necessário selecionar alguma encomenda."},
+        duration: 3000
+      })
     }
   }
 
@@ -106,6 +129,12 @@ export class EncomendasComponent implements OnInit {
           this.pacoteService.removerEtiqueta(id, idSelecionado)
         }
       })
+    
+    } else {
+      this.mensagem.openFromComponent(InfoSnackbarComponent, {
+        data: {msg: "É necessário selecionar alguma encomenda."},
+        duration: 3000
+      })
     }
   }
 
@@ -114,8 +143,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Codigo})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaCodigo){
-        ft.buscaCodigo = result.buscaCodigo
+      const { buscaCodigo } = result
+
+      if(buscaCodigo){
+        ft.buscaCodigo = buscaCodigo
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -127,8 +158,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.OperadorLogistico})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaOperadorLogistico){
-        ft.buscaOperadorLogistico = result.buscaOperadorLogistico
+      const { buscaOperadorLogistico } = result
+
+      if(buscaOperadorLogistico){
+        ft.buscaOperadorLogistico = buscaOperadorLogistico
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -140,8 +173,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Origem})    
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaOrigem){
-        ft.buscaOrigem = result.buscaOrigem
+      const { buscaOrigem } = result
+
+      if(buscaOrigem){
+        ft.buscaOrigem = buscaOrigem
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -153,8 +188,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Destino}) 
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaDestino){
-        ft.buscaDestino = result.buscaDestino
+      const { buscaDestino } = result
+
+      if(buscaDestino){
+        ft.buscaDestino = buscaDestino
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -166,8 +203,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.Etiqueta})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaEtiqueta){
-        ft.buscaEtiqueta = result.buscaEtiqueta
+      const { buscaEtiqueta } = result
+
+      if(buscaEtiqueta){
+        ft.buscaEtiqueta = buscaEtiqueta
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -181,9 +220,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataPostagem})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
-        ft.buscaDataPostagemInicio = result.buscaPeriodoInicio
-        ft.buscaDataPostagemFim = result.buscaPeriodoFim
+      const { buscaPeriodoInicio,  buscaPeriodoFim } = result
+      if(buscaPeriodoInicio && buscaPeriodoFim){
+        ft.buscaDataPostagemInicio = buscaPeriodoInicio
+        ft.buscaDataPostagemFim = buscaPeriodoFim
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }
@@ -195,9 +235,10 @@ export class EncomendasComponent implements OnInit {
     const dialogRef = this.dialog.open(FiltrosComponent, {data: TipoFiltro.DataEntrega})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.buscaPeriodoInicio && result?.buscaPeriodoFim){
-        ft.buscaDataEntregaInicio = result.buscaPeriodoInicio
-        ft.buscaDataEntregaFim = result.buscaPeriodoFim
+      const { buscaPeriodoInicio, buscaPeriodoFim } = result
+      if(buscaPeriodoInicio && buscaPeriodoFim){
+        ft.buscaDataEntregaInicio = buscaPeriodoInicio
+        ft.buscaDataEntregaFim = buscaPeriodoFim
         this.filtros.push(ft)
         this.listaPacotes$.buscaCustom(this.filtros)
       }

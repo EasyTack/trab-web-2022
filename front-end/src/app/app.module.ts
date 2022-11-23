@@ -24,7 +24,8 @@ import { DescreveEtiquetasComponent } from './components/encomendas-page/tabela/
 import { AdicionarEtiquetaComponent } from './components/encomendas-page/etiquetas/adicionar-remover-etiqueta/adicionar-remover-etiqueta.component';
 import { RegistroMovimentacaoComponent } from './pages/registro-movimentacao/registro-movimentacao.component';
 import { EditarEtiquetaComponent } from './components/encomendas-page/etiquetas/editar-etiqueta/editar-etiqueta.component';
-import { SelectEtiquetaComponent } from './components/form/select-etiqueta/select-etiqueta.component'
+import { SelectEtiquetaComponent } from './components/form/select-etiqueta/select-etiqueta.component';
+import { InfoSnackbarComponent } from './components/alertas/info-snackbar/info-snackbar.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SelectEtiquetaComponent } from './components/form/select-etiqueta/selec
     AdicionarEtiquetaComponent,
     RegistroMovimentacaoComponent,
     EditarEtiquetaComponent,
-    SelectEtiquetaComponent
+    SelectEtiquetaComponent,
+    InfoSnackbarComponent
     ],
   imports: [
     BrowserModule,
