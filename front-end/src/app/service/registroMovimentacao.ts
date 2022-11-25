@@ -15,6 +15,6 @@ export class RegistroMovimentacaoService extends GenericService<Configuracao> {
   }
 
   getPorIdPacote(idPacote: String): Observable<RegistroMovimentacao[]>{
-    return this.http.get<RegistroMovimentacao[]>(`${this._url_}/${this.url}/porIdPacote?id=${idPacote}`)
+    return this.http.get<RegistroMovimentacao[]>(`${this._url_}/${this.url}/porIdPacote?id=${idPacote}`, { headers: this.cabecalho() })
   }
 }

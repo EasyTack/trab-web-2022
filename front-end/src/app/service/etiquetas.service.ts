@@ -14,12 +14,13 @@ export class EtiquetasService extends GenericService<Etiqueta>{
   }
 
   criarEAssociarPacote(etiqueta: Etiqueta, idPacotes: String[]){
-    return this.http.post<any>(`${this._url_}/${this.url}/criarEAssociarPacote`, {etiqueta, idPacotes}).subscribe(
-      e => console.log(e)
-    )
-  }
+    return this.http.post<any>(`${this._url_}/${this.url}/criarEAssociarPacote`, {etiqueta, idPacotes}, { headers: this.cabecalho() })
+    .subscribe((e) => {
+      console.log(e)
+    })
+}
 
   getPorIdPacote(idPacotes: String[]){
-    return this.http.post<Etiqueta[]>(`${this._url_}/${this.url}/getPorIdPacotes`, {idPacotes})
+    return this.http.post<Etiqueta[]>(`${this._url_}/${this.url}/getPorIdPacotes`, {idPacotes}, { headers: this.cabecalho() })
   }
 }

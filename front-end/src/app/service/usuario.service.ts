@@ -12,14 +12,4 @@ export class UsuarioService extends GenericService<Usuario>{
   constructor(http: HttpClient) {
     super(http, "usuario")
   }
-
-  login(nome: String, senha: String): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this._url_}/${this.url}/${nome}/${senha}`)
-  }
-
-  recuperarSenha(usuario: Usuario){
-    console.log("recuperar senha:")
-    console.log(usuario)
-    return true
-  }
 }

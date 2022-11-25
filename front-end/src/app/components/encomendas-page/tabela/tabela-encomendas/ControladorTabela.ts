@@ -1,6 +1,6 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, catchError, finalize, map, Observable, of } from 'rxjs';
-import { CustonTable } from 'src/app/interfaces/CustonTable';
+import { CustonTable } from 'src/app/interfaces/custonTable';
 import { Pacote } from 'src/app/model/pacote.model';
 import { Filtro } from 'src/app/model/filtro.model';
 import { PacoteService } from 'src/app/service/pacote.service';

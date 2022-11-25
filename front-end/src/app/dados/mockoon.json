@@ -320,6 +320,33 @@
       ],
       "enabled": true,
       "responseMode": null
+    },
+    {
+      "uuid": "4a22e003-75de-49e0-bcbd-b6adcedafca2",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "auth/:user/:password",
+      "responses": [
+        {
+          "uuid": "6427ce89-d49e-4687-a16a-564b84e2e977",
+          "body": "{\n  \"token\": \"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n  \"usuario\": {\n    \"id\": \"us01\",\n    \"usuario\": \"ricargo@email.com\",\n    \"nome\": \"Ricado\",\n    \"sobrenome\": \"Aurélio\",\n    \"cpf\": \"123.456.789-10\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "proxyMode": false,

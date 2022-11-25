@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Auth } from 'src/app/interfaces/auth'
 import { Usuario } from 'src/app/model/usuario.model'
-import { UsuarioService } from 'src/app/service/usuario.service'
+import { AuthService } from 'src/app/service/auth.service'
+import { Security } from 'src/app/utils/security.util.ts'
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private authService: AuthService
   ) {
     this.formLogin = this.createForm(this.fb)
   }
@@ -42,19 +44,20 @@ export class LoginComponent implements OnInit {
     const senha = this.formLogin.controls['senha'].value
 
     this.buscandoUsuario = true
-    this.usuarioService.login(usuario, senha).subscribe((usr: Usuario) => {
-      console.log(usr)
-      this.buscandoUsuario = false
-    })
-
-    //this.formLogin.reset()
+    this.authService.login(usuario, senha)
+      .subscribe(((data: Auth) => {
+        Security.set(data.usuario, data.token.toString())
+        this.buscandoUsuario = false
+      }), (err) => {
+        this.buscandoUsuario = false
+      })
   }
 
   submitFormRecoverPassword(){
     let usuario = new Usuario()
     usuario.usuario = this.formLogin.controls['usuario'].value
 
-    this.usuarioService.recuperarSenha(usuario)
+    this.authService.recuperarSenha(usuario)
 
     //this.formLogin.reset()
   }
