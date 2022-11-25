@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 import { Auth } from 'src/app/interfaces/auth'
+import { Configuracao } from 'src/app/model/configuracao.model'
 import { Usuario } from 'src/app/model/usuario.model'
 import { AuthService } from 'src/app/service/auth.service'
+import { ConfiguracaoService } from 'src/app/service/configuracao.service'
 import { Security } from 'src/app/utils/security.util.ts'
 
 @Component({
@@ -20,12 +23,23 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private configuracaoService: ConfiguracaoService
   ) {
     this.formLogin = this.createForm(this.fb)
   }
 
   ngOnInit(): void {
+    if(Security.getToken()) {
+      this.authService.refreshToken().subscribe(
+        (data: any) => {
+          Security.setToken(data.token)
+        }, (err) => {
+          Security.clear()
+        }
+      )
+    }
   }
 
   createForm(fb: FormBuilder){
@@ -43,11 +57,18 @@ export class LoginComponent implements OnInit {
     const usuario = this.formLogin.controls['usuario'].value
     const senha = this.formLogin.controls['senha'].value
 
+    if(!usuario && !senha) return
+
     this.buscandoUsuario = true
     this.authService.login(usuario, senha)
       .subscribe(((data: Auth) => {
         Security.set(data.usuario, data.token.toString())
+        this.configuracaoService.getPorIdUsuario(data.usuario.id).subscribe((c) => {
+          Security.setConfig(c)
+        })
+
         this.buscandoUsuario = false
+        this.router.navigate([''])
       }), (err) => {
         this.buscandoUsuario = false
       })
@@ -58,11 +79,13 @@ export class LoginComponent implements OnInit {
     usuario.usuario = this.formLogin.controls['usuario'].value
 
     this.authService.recuperarSenha(usuario)
-
-    //this.formLogin.reset()
   }
 
   recoverPassword(){
     this.recover_password = true
+  }
+
+  returnLogin(){
+    this.recover_password = false
   }
 }

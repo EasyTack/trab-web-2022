@@ -1,3 +1,4 @@
+import { Configuracao } from "../model/configuracao.model"
 import { Usuario } from "../model/usuario.model"
 
 export class Security {
@@ -9,6 +10,12 @@ export class Security {
         localStorage.setItem('user-token', token)
     }
 
+    public static clear(){
+        localStorage.removeItem('user')
+        localStorage.removeItem('user-token')
+        localStorage.removeItem('user-config')
+    }
+
     public static setUser(user: Usuario){
         const data = JSON.stringify(user)
         localStorage.setItem('user', btoa(data))
@@ -17,6 +24,12 @@ export class Security {
     public static setToken(token: string){
         localStorage.setItem('user-token', token)
     }
+
+    public static setConfig(config: Configuracao){
+        const data = JSON.stringify(config)
+        localStorage.setItem('user-config', btoa(data))
+    }
+
 
     public static getUser(): Usuario | null{
         const data = localStorage.getItem('user')
@@ -29,6 +42,13 @@ export class Security {
         const data = localStorage.getItem('user-token')
 
         if(data) return data
+        else return null
+    }
+
+    public static getConfig(): Configuracao | null{
+        const data = localStorage.getItem('user-config')
+
+        if(data) return JSON.parse(atob(data))
         else return null
     }
 

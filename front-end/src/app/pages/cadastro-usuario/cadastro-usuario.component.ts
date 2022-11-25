@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario.model';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { ActivatedRoute } from '@angular/router';
+import { Security } from 'src/app/utils/security.util.ts';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -13,6 +14,8 @@ export class CadastroUsuarioComponent implements OnInit {
 
   hide_senha = true;
   hide_confirmarSenha = true;
+  editandoCadastro = false
+  carregando = false
 
   formCadastro: FormGroup
 
@@ -25,20 +28,19 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.carregandoLista = true
-    this.route.queryParams.subscribe(params => {
-      let id = params['id']
-
-      if(id){
-        this.usuarioService.getId(id).subscribe((usr: Usuario) => {
-          this.formCadastro.controls['usuario'].setValue(usr.usuario)
-          this.formCadastro.controls['cpf'].setValue(usr.cpf)
-          this.formCadastro.controls['nome'].setValue(usr.nome)
-          this.formCadastro.controls['sobrenome'].setValue(usr.sobrenome)
-          //this.carregandoLista = false
-        })
-      }
-    })
+    const usuario = Security.getUser()
+    
+    if(usuario){
+      this.carregando = true
+      this.usuarioService.getId(usuario.id).subscribe((usr: Usuario) => {
+        this.formCadastro.controls['usuario'].setValue(usr.usuario)
+        this.formCadastro.controls['cpf'].setValue(usr.cpf)
+        this.formCadastro.controls['nome'].setValue(usr.nome)
+        this.formCadastro.controls['sobrenome'].setValue(usr.sobrenome)
+        this.editandoCadastro = true
+        this.carregando = false
+      })
+    }
   }
 
   createForm(fb: FormBuilder){
@@ -76,7 +78,5 @@ export class CadastroUsuarioComponent implements OnInit {
     if(usuario.usuario && usuario.nome && usuario.sobrenome && usuario.senha && usuario.senha && confirmarSenha && usuario.cpf){
       this.usuarioService.salvar(usuario)
     }
-
-    //this.formCadastro.reset()
   }
 }

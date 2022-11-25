@@ -10,11 +10,16 @@ import { OperadorLogisticoService } from 'src/app/service/operador-logistico.ser
 })
 export class TransportadorasComponent implements OnInit {
 
-  trasportadoras$?: Observable<OperadorLogistico[]>
+  trasportadoras?: OperadorLogistico[]
+  carregandoLista: Boolean = false
 
   constructor(private operadorLogisticoService: OperadorLogisticoService) { }
 
   ngOnInit(): void {
-    this.trasportadoras$ = this.operadorLogisticoService.getTodos()
+    this.carregandoLista = true;
+    this.operadorLogisticoService.getTodos().subscribe((op: OperadorLogistico[]) => {
+      this.trasportadoras = op
+      this.carregandoLista = false
+    })
   }
 }

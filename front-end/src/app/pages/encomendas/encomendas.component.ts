@@ -12,6 +12,7 @@ import { Etiqueta } from 'src/app/model/etiqueta.model';
 import { EditarEtiquetaComponent } from 'src/app/components/encomendas-page/etiquetas/editar-etiqueta/editar-etiqueta.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoSnackbarComponent } from 'src/app/components/alertas/info-snackbar/info-snackbar.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-encomendas',
@@ -27,7 +28,8 @@ export class EncomendasComponent implements OnInit {
     private dialog: MatDialog,
     private pacoteService: PacoteService,
     private etiquetasService: EtiquetasService,
-    private mensagem: MatSnackBar
+    private mensagem: MatSnackBar,
+    private toastr: ToastrService
   ) {
   }
 
@@ -50,9 +52,8 @@ export class EncomendasComponent implements OnInit {
       this.pacoteService.deletarGrupo(this.listaPacotes$.idPacotesSelecionados())
     
     } else {
-      this.mensagem.openFromComponent(InfoSnackbarComponent, {
-        data: {msg: "É necessário selecionar alguma encomenda."},
-        duration: 3000
+      this.toastr.warning('É necessário selecionar alguma encomenda.', 'Alerta', {
+        timeOut: 3000,
       })
     }
   }
@@ -72,9 +73,8 @@ export class EncomendasComponent implements OnInit {
       )
     
     } else {
-      this.mensagem.openFromComponent(InfoSnackbarComponent, {
-        data: {msg: "É necessário selecionar alguma encomenda."},
-        duration: 3000
+      this.toastr.warning('É necessário selecionar alguma encomenda.', 'Alerta', {
+        timeOut: 3000,
       })
     }
   }
@@ -109,9 +109,8 @@ export class EncomendasComponent implements OnInit {
       })
     
     } else {
-      this.mensagem.openFromComponent(InfoSnackbarComponent, {
-        data: {msg: "É necessário selecionar alguma encomenda."},
-        duration: 3000
+      this.toastr.warning('É necessário selecionar alguma encomenda.', 'Alerta', {
+        timeOut: 3000,
       })
     }
   }
@@ -131,9 +130,8 @@ export class EncomendasComponent implements OnInit {
       })
     
     } else {
-      this.mensagem.openFromComponent(InfoSnackbarComponent, {
-        data: {msg: "É necessário selecionar alguma encomenda."},
-        duration: 3000
+      this.toastr.warning('É necessário selecionar alguma encomenda.', 'Alerta', {
+        timeOut: 3000,
       })
     }
   }

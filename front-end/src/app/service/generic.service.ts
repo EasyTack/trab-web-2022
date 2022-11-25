@@ -10,7 +10,10 @@ export abstract class GenericService<T> {
 
   _url_ = "http://localhost:3001/angular"
 
-  constructor(protected http: HttpClient, protected url: String) {}
+  constructor(
+    protected http: HttpClient, 
+    protected url: String
+  ) {}
 
   public cabecalho(){
     const token = Security.getToken()

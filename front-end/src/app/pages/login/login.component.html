@@ -23,7 +23,7 @@
         </mat-form-field>
 
         <button type="submit" (click)="submitForm()" mat-raised-button color="primary" class="highlight-button-blue">Login</button>
-        <a href="cadusr">novo usuário</a>
+        <a [routerLink]="['/cadusr']">novo usuário</a>
         <a (click)="recoverPassword()">recuperar senha</a>
     </form>
 
@@ -37,5 +37,6 @@
         </mat-form-field>
 
         <button type="submit" mat-raised-button color="primary" class="highlight-button-blue">Enviar</button>
+        <a (click)="returnLogin()">voltar para o login</a>
     </form>
 </div>

@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from 'src/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { ToastrModule } from 'ngx-toastr'
 
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
@@ -59,6 +61,7 @@ import { InfoSnackbarComponent } from './components/alertas/info-snackbar/info-s
       dropSpecialCharacters: false,
       validation: true
   }),
+    ToastrModule.forRoot()
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-br'}

@@ -194,7 +194,7 @@
       "responses": [
         {
           "uuid": "b5bd71cd-d814-4d2c-812d-e378d0a41650",
-          "body": "{\n  \"id\": \"us01\",\n  \"usuario\": \"ricargo@email.com\",\n  \"nome\": \"Ricado\",\n  \"sobrenome\": \"Aurélio\",\n  \"cpf\": \"123.456.789-10\",\n  \"configuracao\": {\n    \"atualizacaoAutomatica\": false,\n    \"tipoOrdenacaoPadrao\": 1,\n    \"intervaloAtualizacao\": 1,\n    \"horarioComercialAtualizacao\": false\n  }\n}",
+          "body": "{\n  \"id\": \"us01\",\n  \"usuario\": \"ricargo@email.com\",\n  \"nome\": \"Ricado\",\n  \"sobrenome\": \"Aurélio\",\n  \"cpf\": \"123.456.789-10\",\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -330,6 +330,60 @@
         {
           "uuid": "6427ce89-d49e-4687-a16a-564b84e2e977",
           "body": "{\n  \"token\": \"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n  \"usuario\": {\n    \"id\": \"us01\",\n    \"usuario\": \"ricargo@email.com\",\n    \"nome\": \"Ricado\",\n    \"sobrenome\": \"Aurélio\",\n    \"cpf\": \"123.456.789-10\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "7b9bbb28-b553-451f-87ee-1edc22c8538a",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "auth/refreshToken",
+      "responses": [
+        {
+          "uuid": "8fe74e67-c232-4f11-85c4-167a699c4835",
+          "body": "{\n  \"token\": \"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3c93b58e-182e-4a61-a9c8-969a76bb98c0",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "configuracao/getPorIdUsuario/:id",
+      "responses": [
+        {
+          "uuid": "06fb5409-789b-4e6f-baa8-03740902677d",
+          "body": "{\n    \"atualizacaoAutomatica\": true,\n    \"tipoOrdenacaoPadrao\": 1,\n    \"intervaloAtualizacao\": 1,\n    \"horarioComercialAtualizacao\": false\n  }",
           "latency": 0,
           "statusCode": 200,
           "label": "",

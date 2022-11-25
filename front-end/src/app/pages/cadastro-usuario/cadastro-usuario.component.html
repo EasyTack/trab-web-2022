@@ -1,6 +1,11 @@
 <div class="content-alight-center">
-    <form [formGroup]="formCadastro" (ngSubmit)="submitForm()" class="form-center card-white">
-        <h1 class="title">Cadastrar</h1>
+    <div *ngIf="carregando" class="matbar card-white">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <form *ngIf="!carregando" [formGroup]="formCadastro" (ngSubmit)="submitForm()" class="form-center card-white">
+        <h1 *ngIf="!editandoCadastro" class="title">Cadastrar</h1>
+        <h1 *ngIf="editandoCadastro" class="title">Editar</h1>
         
         <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
@@ -38,6 +43,9 @@
             </button>
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary" class="highlight-button-blue">Cadastrar</button>
+        <button *ngIf="!editandoCadastro" type="submit" mat-raised-button color="primary" class="highlight-button-blue">Cadastrar</button>
+        <a *ngIf="!editandoCadastro" [routerLink]="['/login']">voltar para o login</a>
+
+        <button *ngIf="editandoCadastro" type="submit" mat-raised-button color="primary" class="highlight-button-blue">Salvar</button>
     </form>
 </div>

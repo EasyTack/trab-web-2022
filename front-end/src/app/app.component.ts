@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfiguracaoComponent } from './components/configuracao/configuracao.component';
 import { Router } from '@angular/router';
+import { AuthService } from './service/auth.service';
+import { Security } from './utils/security.util.ts';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,19 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  usuarioLogado: Boolean = false
+
   constructor(
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
-    //this.openConfig()
+  }
+
+  ngDoCheck(){
+    this.usuarioLogado = (Security.getToken()) ? true : false
   }
   
   openConfig(){
@@ -28,6 +36,6 @@ export class AppComponent {
   }
 
   logout(){
-    console.log("Sair")
+    this.authService.logout()
   }
 }
